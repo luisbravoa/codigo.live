@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACE Autocompletion demo</title>
+    <style type="text/css" media="screen">
+        html{
+
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        #editor, #editor2 {
+            width: 50%;
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<pre id="editor"></pre>
+<pre id="editor2"></pre>
+
+<!-- load ace -->
+<script src="src-noconflict/ace.js"></script>
+<!-- load ace language tools -->
+<script src="src-noconflict/ext-language_tools.js"></script>
+<script>
+    // trigger extension
+    ace.require("ace/ext/language_tools");
+    editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/tomorrow");
+
+
+    editor2 = ace.edit("editor2");
+    editor2.session.setMode("ace/mode/html");
+    editor2.setTheme("ace/theme/tomorrow");
+
+
+    function insert(val, pos){
+        var prev = editor.getCursorPosition();
+        editor2.moveCursorToPosition(pos);
+        editor2.insert(val);
+        editor2.moveCursorToPosition(prev);
+    }
+
+
+    editor.getSession().on('change', function(e) {
+
+//        if(e.action === 'insert'){
+//            console.log('INSERT', e);
+//            e.lines.forEach(function(line, index){
+//
+//                if(index > 0){ editor2.splitLine()}
+//
+//                insert(line, {
+//                    column: e.start.column,
+//                    row: e.start.row + index
+//                });
+//            });
+//        }else if(e.action === 'remove'){
+//            console.log('REMOVE', e);
+//            editor2.remove('left');
+//        }else {
+ editor2.setValue(editor.getValue());
+        editor2.clearSelection();
+//        }
+    });
+
+    editor.getSession().selection.on('documentChange', function(e) {
+        console.log(e);
+    });
+
+
+
+</script>
+
+<!-- <script src="./show_own_source.js"></script> -->
+</body>
+</html>

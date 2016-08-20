@@ -1,0 +1,20 @@
+.message {
+    background-color: #f5f5f5;
+    margin: 10px;
+    padding: 20px;
+    /*width: 80%;*/
+}
+
+.message-user {
+    font-weight: bold;
+    color: black;
+}
+.message-content {
+    margin: 10px 0;
+}
+.message-date {
+    font-style: italic;
+    color: gray;
+    font-size: 12px;
+    text-align: right;
+}

@@ -1,0 +1,102 @@
+html, body, #app{
+    height: 100%;
+}
+nav.navbar.navbar-inverse{
+    background-image: none;
+    background-color: white;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    text-shadow: none;
+    padding: 10px 0;
+    color: black;
+    border-color: rgba(0,0,0,.1);
+}
+#logo{
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: none;
+    margin: 0;
+}
+#logo:hover{
+    color: black;
+    background-color: transparent;
+}
+
+#navbar ul li a{
+    text-shadow: none;
+}
+#navbar ul li a:hover{
+
+    color: black;
+    background-color: transparent;
+}
+
+#login{
+    padding-top: 100px;
+}
+
+#layout {
+    height: 100%;
+    padding-top: 70px;
+}
+#left{
+    height: 100%;
+    padding-top: 10px;
+}
+#right{
+    background-color: gray;
+    padding:0;
+    height: 100%;
+}
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+#editor {
+    height: 100%;
+}
+
+.schedule table{
+    font-size: 12px;
+}
+
+.schedule .elipsis{
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#courseList {
+
+}
+#courseList ul {
+    list-style: none;
+    padding: 0;
+}
+
+#courseList li {
+    padding: 7px 0;
+    font-size: 14px;
+}
+
+
+#loaderWrapper{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right:0;
+    background-color: rgba(0,0,0,.2);
+    z-index: 1000;
+
+}
+
+#loader{
+    position: fixed;
+    top: calc(50% - 45px);
+    left:50%;
+}
+#loader-message{
+    margin-top:20px;
+}
