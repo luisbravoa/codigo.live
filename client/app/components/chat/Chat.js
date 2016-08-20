@@ -12,9 +12,11 @@ export default class Navigation extends React.Component {
 
     render() {
 
+        var {messages} = this.props;
+
         return (
             <div id="chat">
-                <MessageList></MessageList>
+                <MessageList messages={messages}></MessageList>
                 <InputField></InputField>
             </div>
         );

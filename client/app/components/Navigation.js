@@ -7,6 +7,11 @@ export default class Navigation extends React.Component {
         this.state = {};
     }
 
+    newDocument (e) {
+        e.preventDefault();
+        actions.newDocument();
+    }
+
     render() {
 
         var error;
@@ -31,7 +36,7 @@ export default class Navigation extends React.Component {
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav navbar-left">
-                            <li><a href="#">New</a></li>
+                            <li><a href="#" onClick={this.newDocument.bind(this)}>New Document</a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li><a href="#">About</a></li>

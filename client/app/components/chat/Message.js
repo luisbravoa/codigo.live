@@ -11,15 +11,15 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        var {content, user, date} = this.props.data;
+        var {content, username, date} = this.props.data;
 
-        var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " +
-            date.getHours() + ":" + date.getMinutes();
+        // var datestring = date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear() + " " +
+        //     date.getHours() + ":" + date.getMinutes();
         return (
             <li className="message">
-                <div className="message-user">{user}</div>
+                <div className="message-user">{username}</div>
                 <div className="message-content">{content}</div>
-                <div className="message-date">{datestring}</div>
+                <div className="message-date">{date}</div>
             </li>
         );
     }

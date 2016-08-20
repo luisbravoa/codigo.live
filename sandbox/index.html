@@ -51,6 +51,9 @@
     }
 
 
+    editor2.getSession().on('change', function(e) {
+        console.log('editor2 change');
+    });
     editor.getSession().on('change', function(e) {
 
 //        if(e.action === 'insert'){
@@ -69,7 +72,7 @@
 //            editor2.remove('left');
 //        }else {
  editor2.setValue(editor.getValue());
-        editor2.clearSelection();
+//        editor2.clearSelection();
 //        }
     });
 

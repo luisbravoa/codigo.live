@@ -3,90 +3,88 @@ import store from '../stores/index';
 import DataService from '../utils/DataService';
 const dataService = new DataService();
 
-function login(email, password) {
-    store.dispatch({
-        type: 'SHOW_LOADER'
-    });
-    dataService.login(email, password)
-        .then((user) => {
 
-            dataService.fetchCourses()
-                .then((courses)=>{
-                    store.dispatch({
-                        type: 'SHOW_DASHBOARD',
-                        data: {
-                            user,
-                            courses
-                        }
-                    });
+class Actions {
+    connect(id, username) {
+        store.dispatch({
+            type: 'SHOW_LOADER'
+        });
+        dataService.connect(id, username, this.onMessage)
+            .then((data) => {
+                // console.log(data);
+            })
+            .catch((e)=> {
+                store.dispatch({
+                    type: 'SHOW_LOGIN_ERROR'
                 });
-
-        })
-        .catch((e)=>{
-            store.dispatch({
-                type: 'SHOW_LOGIN_ERROR'
             });
+    }
+
+    onMessage (e) {
+        switch (e.type) {
+            case 'chat':
+                store.dispatch({
+                    type: 'CHAT_MESSAGE',
+                    data: e.data
+                });
+                break;
+            case 'init':
+                store.dispatch({
+                    type: 'INIT',
+                    data: e.data
+                });
+                break;
+            case 'code':
+                store.dispatch({
+                    type: 'CODE',
+                    data: e.data
+                });
+                break;
+        }
+
+    }
+
+    sendMessage(content) {
+        dataService.send('chat', {
+            content: content
         });
-}
-
-function enrole(userId, CourseId) {
-    store.dispatch({
-        type: 'SHOW_LOADER'
-    });
-    dataService.enrole(userId, CourseId)
-        .then((user) => {
-
-            store.dispatch({
-                type: 'SET_USER',
-                data: user
-            });
-
-        })
-        .catch((e)=>{
-            store.dispatch({
-                type: 'SHOW_COURSE_ERROR'
-            });
+    }
+    
+    sendCode(content) {
+        dataService.send('code', {
+            content: content
         });
-}
-
-
-function dropout(userId, CourseId) {
-    store.dispatch({
-        type: 'SHOW_LOADER'
-    });
-    dataService.dropout(userId, CourseId)
-        .then((user) => {
-
-            store.dispatch({
-                type: 'SET_USER',
-                data: user
-            });
-
-        })
-        .catch((e)=>{
-            store.dispatch({
-                type: 'SHOW_COURSE_ERROR'
-            });
+    }
+    setUsername(username) {
+        localStorage.setItem('username', username);
+        store.dispatch({
+            type: 'SET_USERNAME',
+            data: username
         });
+    }
+
+    setDocumentId(id) {
+        store.dispatch({
+            type: 'SET_DOCUMENT_ID',
+            data: id
+        });
+    }
+
+    newDocument (){
+        store.dispatch({
+            type: 'SHOW_LOADER'
+        });
+
+        dataService.newDocument()
+            .then((data) => {
+                window.location.hash = data.id;
+            })
+            .catch((e)=> {
+                store.dispatch({
+                    type: 'SHOW_ERROR'
+                });
+            });
+    }
 }
 
-function logout() {
-    store.dispatch({
-        type: 'LOGOUT'
-    });
-}
-
-function showCourse (id){
-    store.dispatch({
-        type: 'SHOW_COURSE',
-        id: id
-    });
-}
-
-export default {
-    login,
-    logout,
-    showCourse,
-    enrole,
-    dropout
-};
+export default new Actions();

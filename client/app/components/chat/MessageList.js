@@ -11,48 +11,7 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        var messages = [
-            {
-                content: 'Hello this is a message!',
-                user: 'luisbravoa',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'pats10',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'pats10',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'luisbravoa',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'pats10',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'luisbravoa',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'pats10',
-                date: new Date()
-            },
-            {
-                content: 'Hello this is a message!',
-                user: 'luisbravoa',
-                date: new Date()
-            },
-        ];
+        var {messages} = this.props;
 
         return (
             <ul id="message-list">

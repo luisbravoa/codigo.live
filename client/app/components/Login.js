@@ -23,7 +23,7 @@ export default class Login extends React.Component {
 
         return (
             <div className="row" id="login">
-                <div className="col-lg-8 col-lg-push-2">
+                <div className="col-lg-4 col-lg-push-2">
                     <h1 className="text-center">Please Login</h1>
                     <form className="form-horizontal">
                         {error}

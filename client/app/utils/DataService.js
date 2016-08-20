@@ -1,84 +1,55 @@
 var $ = require('jquery');
-var api_token;
-function DataService() {
-    this.base_url = "http://college.luisbravoa.com";
 
+class DataService {
+    constructor() {
+        this.base_url = "http://127.0.0.1:3000/";
+    }
 
+    connect(id, username, onMessage) {
+        return new Promise((resolve, reject) => {
+            this.socket = io.connect(this.base_url + '?id=' + id + '&username=' + username);
+
+            this.socket.on('connect', function (data) {
+                console.log('connect');
+
+                resolve(data);
+            });
+            this.socket.on('error', function (e) {
+                reject(e);
+            });
+            this.socket.on('disconnect', function (e, x) {
+                console.log('disconnect', e, x)
+            });
+            this.socket.on('message', function (e) {
+                // console.log('message', e);
+                onMessage(e);
+            });
+        });
+    }
+
+    send(type, payload) {
+        if (this.socket) {
+            this.socket.emit('message', {
+                type: type,
+                data: payload
+            });
+        }
+
+    }
+
+    newDocument() {
+        return new Promise((resolve, reject) => {
+
+            $.ajax({
+                type: 'PUT',
+                url: this.base_url + 'documents',
+                success: resolve,
+                error: reject
+            });
+        });
+
+    }
 }
 
-function beforeSend(xhr){
-    xhr.setRequestHeader('Authorization', 'Bearer '+ api_token);
-}
-
-DataService.prototype.fetchCourses = function () {
-
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: this.base_url+'/courses',
-            beforeSend: beforeSend,
-            success: function (data) {
-                resolve(data);
-            },
-            error: reject
-        });
-    });
-
-};
-DataService.prototype.enrole = function (userId, courseId) {
-
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: this.base_url+'/users/'+userId+'/courses/'+courseId,
-            beforeSend: beforeSend,
-            success: function (data) {
-                resolve(data);
-            },
-            error: reject
-        });
-    });
-
-};
-
-DataService.prototype.dropout = function (userId, courseId) {
-
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "DELETE",
-            dataType: "json",
-            url: this.base_url+'/users/'+userId+'/courses/'+courseId,
-            beforeSend: beforeSend,
-            success: function (data) {
-                resolve(data);
-            },
-            error: reject
-        });
-    });
-
-};
-
-DataService.prototype.login = function (email='', password=1) {
-
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: this.base_url+'/login',
-            data: {
-                email: email,
-                password: password
-            },
-            success:  (user) =>{
-                api_token = user.api_token;
-                resolve(user);
-            },
-            error: reject
-        });
-    });
-
-};
 
 module.exports = DataService;
