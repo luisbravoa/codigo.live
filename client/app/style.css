@@ -1,7 +1,7 @@
 html, body, #app{
     height: 100%;
 }
-nav.navbar.navbar-inverse{
+nav.navbar{
     background-image: none;
     background-color: white;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -12,11 +12,22 @@ nav.navbar.navbar-inverse{
     border-color: rgba(0,0,0,.1);
 }
 
+nav.navbar .navbar-header  .icon-bar{
+    color: black;
+    background-color: black;
+}
+.navbar-toggle.collapsed{
+    border-color: black;
+}
+
 #navbar ul li a{
     color: #000;
 }
 #navbar ul li a:focus{
     color: #000;
+}
+#about{
+    color: #cecece !important;
 }
 #home-banner{
     margin:0;

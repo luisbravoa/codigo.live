@@ -1,3 +1,4 @@
 node_modules
 .idea
 api/config.js
+client/app.min.js

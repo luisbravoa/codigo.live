@@ -57,17 +57,27 @@ class Actions {
     }
     setUsername(username) {
         localStorage.setItem('username', username);
+        this.username = username;
         store.dispatch({
             type: 'SET_USERNAME',
             data: username
         });
+        this.checkConnect();
+    }
+
+    checkConnect () {
+        if(this.documentId !== undefined && this.documentId !== '' && this.username !== null){
+            this.connect(this.documentId , this.username);
+        }
     }
 
     setDocumentId(id) {
+        this.documentId = id;
         store.dispatch({
             type: 'SET_DOCUMENT_ID',
             data: id
         });
+        this.checkConnect();
     }
 
     newDocument (){

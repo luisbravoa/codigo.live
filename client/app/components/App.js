@@ -16,10 +16,9 @@ class App extends React.Component {
 
         const {username, documentId} = this.props;
 
-        // console.log(this.props);
         var content;
 
-        if (documentId !== '' && documentId.length > 0) {
+        if (documentId !== undefined && documentId !== '' && documentId.length > 0) {
             var dialog = (!username) ? <Dialog {...this.props}/> : '';
             content = (
                 <div id="app">

@@ -23,7 +23,7 @@ export default class Navigation extends React.Component {
         }
 
         return (
-            <nav className="navbar navbar-inverse navbar-fixed-top">
+            <nav className="navbar navbar-fixed-top">
                 <div className="container-fluid">
                     <div className="navbar-header">
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -39,7 +39,7 @@ export default class Navigation extends React.Component {
                             <li><a href="#" onClick={this.newDocument.bind(this)}>New Document</a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#">About</a></li>
+                            <li><a href="http://luisbravoa.com" target="blank" id="about">by <i>luisbravoa</i></a></li>
                         </ul>
                     </div>
                 </div>

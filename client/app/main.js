@@ -16,32 +16,38 @@ store.subscribe(render);
 
 
 var documentId;
-function onLocationChange() {
-    var hash = location.hash;
-    documentId = hash.replace('#', '');
 
-    // if(documentId.length >0){
-        actions.setDocumentId(documentId);
-
-        // fetch username
-        var username = localStorage.getItem('username');
-        actions.connect(documentId, username);
-    // }
-
-
-}
-onLocationChange();
 
 // fetch username
 var username = localStorage.getItem('username');
 
-if(username !== null){
+if (username !== null) {
     store.dispatch({
         type: 'SET_USERNAME',
         data: username
     });
-    actions.connect(documentId, username);
+    actions.setUsername(username);
+    // actions.connect(documentId, username);
 }
+
+
+function onLocationChange() {
+    var hash = location.hash;
+    documentId = hash.replace('#', '');
+    // fetch username
+    var username = localStorage.getItem('username');
+    if (documentId.length > 0 ) {
+        actions.setDocumentId(documentId);
+        // if(username !== null){
+        //     actions.connect(documentId, username);
+        // }
+    } else {
+        actions.setDocumentId();
+    }
+
+
+}
+onLocationChange();
 
 window.addEventListener("hashchange", onLocationChange);
 
