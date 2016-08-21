@@ -14,11 +14,11 @@ class Layout extends React.Component {
 
         return (
             <div id="layout" className="container-full">
-                <div id="right" className="col-xs-6 col-sm-9 col-md-9">
+                <div id="right" className="col-sm-9 col-md-9">
                     <Editor code={code}/>
                 </div>
 
-                <div id="left" className="col-xs-6 col-sm-3 col-md-3 sidebar">
+                <div id="left" className="col-sm-3 col-md-3 sidebar">
                     <Chat messages={chat.messages}></Chat>
                 </div>
             </div>

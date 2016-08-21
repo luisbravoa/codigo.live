@@ -1,21 +1,6 @@
 #message-list {
     list-style: none;
     padding: 0;
-    height: calc(100% - 80px);
+    height: calc(100% - 60px);
     overflow: auto;
-}
-
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 20px;
 }

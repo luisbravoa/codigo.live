@@ -11,6 +11,7 @@
     border-right: none;
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     height: 55px;
 
 }
