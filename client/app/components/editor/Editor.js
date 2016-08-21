@@ -1,5 +1,6 @@
 import React from 'react';
 import actions from '../../actions/index';
+import Dropdown from './Dropdown';
 import './editor.css';
 ace.require("ace/ext/language_tools");
 export default class Navigation extends React.Component {
@@ -13,7 +14,7 @@ export default class Navigation extends React.Component {
         this.init();
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.editor.destroy();
     }
 
@@ -26,8 +27,8 @@ export default class Navigation extends React.Component {
         this.settingValue = false;
     }
 
-    handleChange (){
-        if(this.settingValue !== true){
+    handleChange() {
+        if (this.settingValue !== true) {
             actions.sendCode(this.editor.getValue());
         }
     }
@@ -45,20 +46,29 @@ export default class Navigation extends React.Component {
     render() {
         var {code} = this.props;
 
-        if(this.editor && code !== this.editor.getValue()){
+        if (this.editor && code !== this.editor.getValue()) {
             this.setValueSilent(code);
 
         }
 
         return (
-            <div id="editor"></div>
+            <div id="editor-wrapper">
+                <div id="editor-top">
+                    <Dropdown placeholder="Language" options={modes} value={'javascript'} onChange={(mode)=>{
+                        this.editor.session.setMode("ace/mode/"+mode);
+                    }
+                    }/>
+                    <Dropdown placeholder="Theme" options={themes} value={'tomorrow_night_eighties'} onChange={(theme)=>{
+                        this.editor.setTheme("ace/theme/"+theme);
+                    }
+                    }/>
+                </div>
+                <div id="editor"></div>
+
+            </div>
         );
     }
 }
-
-
-// editor2.setValue(editor.getValue());
-// editor2.clearSelection();
 
 
 var themes = [
@@ -95,6 +105,8 @@ var themes = [
     'vibrant_ink',
     'xcode'
 ];
+
+var modes = ["c_cpp", "clojure", "coffee", "csharp", "css", "dart", "erlang", "haml", "handlebars", "html", "html_ruby", "java", "javascript", "less", "livescript", "lucene", "markdown", "mysql", "objectivec", "pascal", "perl", "php", "plain_text", "python", "ruby", "sass", "scala", "sql", "sqlserver", "svg", "swift", "typescript", "vbscript"];
 // var index = 0;
 // setInterval(function () {
 // console.log(themes[index])

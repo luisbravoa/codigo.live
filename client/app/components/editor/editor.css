@@ -1,0 +1,27 @@
+#editor {
+    height: calc(100% - 55px);
+}
+#editor-wrapper{
+    height: 100%;
+}
+#editor-top{
+    padding: 10px;
+    border:1px solid #cecece;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    justify-content: flex-start;
+    height: 55px;
+
+}
+#editor-modes{
+    min-width: 120px;
+    padding: 5px;
+    margin: 0 10px;
+}
+.dropdown-menu>li.selected{
+    background-color: #e8e8e8;
+}
+.dropdown-menu>li.selected>a{
+    font-weight: bold;
+}

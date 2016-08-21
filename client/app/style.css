@@ -29,6 +29,10 @@ nav.navbar .navbar-header  .icon-bar{
 #about{
     color: #cecece !important;
 }
+.dropdown-menu{
+    max-height: 300px;
+    overflow-y: scroll;
+}
 #home-banner{
     margin:0;
     background-image: url("/img/home.jpg");
@@ -86,7 +90,6 @@ nav.navbar .navbar-header  .icon-bar{
     padding-top: 10px;
 }
 #right{
-    background-color: gray;
     padding:0;
     height: 100%;
 }
@@ -94,9 +97,6 @@ nav.navbar .navbar-header  .icon-bar{
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
-}
-#editor {
-    height: 100%;
 }
 
 .schedule table{
