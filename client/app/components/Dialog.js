@@ -4,7 +4,7 @@ import actions from '../actions/index';
 export default
 class Dialog extends React.Component {
 
-    constructor (){
+    constructor() {
         super();
         this.state = {
             username: ''
@@ -27,7 +27,7 @@ class Dialog extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(()=>{
+        setTimeout(()=> {
             this.openModal();
         }, 50);
 
@@ -42,9 +42,9 @@ class Dialog extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if(this.state.username !== ''){
+        if (this.state.username !== '') {
             $('#modal').modal('hide');
-            actions.setUsername(this.state.username);
+            actions.setUsername(sanitizeHTML(this.state.username));
         }
     }
 
@@ -66,10 +66,14 @@ class Dialog extends React.Component {
                                             <fieldset>
                                                 <div className="form-group">
                                                     <label>Username</label>
-                                                    <input type="text" className="form-control" placeholder="Your name here..." value={this.state.username} onChange={this.onChange.bind(this)}/>
+                                                    <input type="text" className="form-control"
+                                                           placeholder="Your name here..." value={this.state.username}
+                                                           onChange={this.onChange.bind(this)}/>
                                                 </div>
                                                 <div className="text-center">
-                                                    <button type="submit" className="btn btn-primary" onClick={this.onSubmit.bind(this)}>Join</button>
+                                                    <button type="submit" className="btn btn-primary"
+                                                            onClick={this.onSubmit.bind(this)}>Join
+                                                    </button>
                                                 </div>
                                             </fieldset>
                                         </form>
@@ -83,6 +87,14 @@ class Dialog extends React.Component {
             </div>
         );
     }
+}
+
+
+function sanitizeHTML(str, white, black) {
+    if (!white) white = "b|i|p|br";//allowed tags
+    if (!black) black = "script|object|embed";//complete remove tags
+    var e = new RegExp("(<(" + black + ")[^>]*>.*</\\2>|(?!<[/]?(" + white + ")(\\s[^<]*>|[/]>|>))<[^<>]*>|(?!<[^<>\\s]+)\\s[^</>]+(?=[/>]))", "gi");
+    return str.replace(e, "");
 }
 
 

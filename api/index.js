@@ -48,17 +48,33 @@ mongoose.connect(url);
 
 io.on('connection', function (socket) {
     var documentId = socket.handshake.query.id;
-    logger.info('New session for doc ' + documentId)
+    logger.info('New session for doc ' + documentId);
     if(!documentsObjects[documentId]){
         logger.info('Created Document Id '+ documentId);
-        documentsObjects[documentId] = new Document({
-            id: documentId
+
+        Document.findById(documentId)
+            .then(function (document) {
+                documentsObjects[documentId] = document;
+                document.addSession({
+                    socket: socket
+                });
+            })
+            .catch(function (error) {
+                socket.emit('message', {type: 'error', data:{ error: error.toString()}});
+                socket.disconnect();
+            });
+    }   else {
+        var document = documentsObjects[documentId];
+        document.addSession({
+            socket: socket
         });
     }
-    var doc = documentsObjects[documentId];
-
-    doc.addSession({
-        socket: socket
-    });
     
 });
+
+setInterval(function () {
+    for(var id in documentsObjects){
+        let document = documentsObjects[id];
+        // housekeeping
+    }
+}, 2000);

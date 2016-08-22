@@ -28,7 +28,6 @@ class Session extends EventEmitter {
             e.data.username = this.username;
             e.data.date = new Date();
 
-            // logger.info('message', e);
             this.emit('message', e);
         });
     }

@@ -31,11 +31,13 @@ export default class Navigation extends React.Component {
         if (this.settingValue !== true) {
             actions.sendCode(this.editor.getValue());
         }
+        actions.setCode(this.editor.getValue());
     }
 
     init() {
 
         this.editor = ace.edit("editor");
+        this.editor.$blockScrolling = Infinity;
         this.editor.session.setMode("ace/mode/javascript");
         this.editor.setTheme("ace/theme/tomorrow_night_eighties");
         this.editor.setFontSize(16);

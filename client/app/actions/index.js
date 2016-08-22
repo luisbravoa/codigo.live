@@ -21,6 +21,7 @@ class Actions {
     }
 
     onMessage (e) {
+
         switch (e.type) {
             case 'chat':
                 store.dispatch({
@@ -40,6 +41,10 @@ class Actions {
                     data: e.data
                 });
                 break;
+            case 'error':
+                // show error
+                debugger;
+                break;
         }
 
     }
@@ -50,6 +55,15 @@ class Actions {
         });
     }
     
+    setCode(content) {
+        store.dispatch({
+            type: 'CODE',
+            data: {
+                content: content
+            }
+        });
+    }
+
     sendCode(content) {
         dataService.send('code', {
             content: content
