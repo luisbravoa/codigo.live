@@ -1,0 +1,18 @@
+file="$1"
+
+runner="docker run runner"
+
+file=$1
+
+ext"${file##*.}"
+echo "$ext"
+
+case "$ext" in
+  "rb")
+    ruby $file
+    ;;
+  *)
+    echo "Not supported"
+    exit 1
+    ;;
+esac
