@@ -1,1 +1,5 @@
-console.log('BOMBA');
+function myFunc(){
+    console.log('dscscscsdsadasad')
+}
+
+myFunc();

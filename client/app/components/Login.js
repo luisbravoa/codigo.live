@@ -6,7 +6,8 @@ export default class Login extends React.Component {
 
         this.state = {};
     }
-    onSubmit (e){
+
+    onSubmit(e) {
         e.preventDefault();
         actions.login(this.refs.email.value, this.refs.password.value);
     }
@@ -15,7 +16,7 @@ export default class Login extends React.Component {
 
         var error;
 
-        if(this.props.error){
+        if (this.props.error) {
             error = (<div className="alert alert-danger" role="alert">
                 <strong>Oh snap!</strong> Change a few things up and try submitting again.
             </div>);
@@ -30,19 +31,22 @@ export default class Login extends React.Component {
                         <div className="form-group">
                             <label for="inputEmail3" className="col-sm-2 control-label">Email</label>
                             <div className="col-sm-10">
-                                <input type="email" className="form-control" id="inputEmail3" placeholder="Email" ref="email" defaultValue="info@luisbravoa.com"/>
+                                <input type="email" className="form-control" id="inputEmail3" placeholder="Email"
+                                       ref="email" defaultValue="info@luisbravoa.com"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <label for="inputPassword3" className="col-sm-2 control-label">Password</label>
                             <div className="col-sm-10">
                                 <input type="password" className="form-control" id="inputPassword3"
-                                       placeholder="Password" ref="password" defaultValue="12345678" />
+                                       placeholder="Password" ref="password" defaultValue="12345678"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-default" onClick={this.onSubmit.bind(this)}>Sign in</button>
+                                <button type="submit" className="btn btn-default" onClick={this.onSubmit.bind(this)}>
+                                    Sign in
+                                </button>
                             </div>
                         </div>
                     </form>

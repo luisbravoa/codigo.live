@@ -15,7 +15,9 @@ class Session extends EventEmitter {
             type: 'init',
             data: {
                 code: options.code,
-                messages: options.messages
+                messages: options.messages,
+                language: options.language,
+                output: options.output
             }
         });
     }

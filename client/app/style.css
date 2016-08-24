@@ -85,20 +85,20 @@ nav.navbar .navbar-header  .icon-bar{
     height: 100%;
     padding-top: 70px;
 }
-#left{
+#chat-panel{
     height: 100%;
     padding-top: 10px;
 }
-#right{
+#code-panel{
     padding:0;
     height: 100%;
 }
 @media(max-width: 768px){
-    #left{
+    #chat-panel{
         height: 300px;
         padding-top: 10px;
     }
-    #right{
+    #code-panel{
         padding:0;
         height: 600px;
     }

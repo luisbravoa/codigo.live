@@ -1,6 +1,7 @@
 import React from 'react';
 import Chat from './chat/Chat';
 import Editor from './editor/Editor';
+import Console from './console/Console';
 export default
 class Layout extends React.Component {
     constructor(props) {
@@ -10,15 +11,19 @@ class Layout extends React.Component {
     }
 
     render() {
-        var {chat, code} = this.props;
-
+        var {chat, code, output, language, running} = this.props;
+        console.log(running);
         return (
             <div id="layout" className="container-full">
-                <div id="right" className="col-sm-9 col-md-9">
-                    <Editor code={code}/>
+                <div id="code-panel" className="col-sm-4 col-md-4">
+                    <Editor code={code} language={language} running={running}/>
                 </div>
 
-                <div id="left" className="col-sm-3 col-md-3 sidebar">
+                <div id="code-panel" className="col-sm-5 col-md-5">
+                    <Console content={output}/>
+                </div>
+
+                <div id="chat-panel" className="col-sm-3 col-md-3 sidebar">
                     <Chat messages={chat.messages}></Chat>
                 </div>
             </div>

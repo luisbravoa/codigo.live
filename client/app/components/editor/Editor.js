@@ -45,8 +45,24 @@ export default class Navigation extends React.Component {
         this.editor.getSession().on('change', this.handleChange.bind(this));
     }
 
+    onRun() {
+        actions.runCode();
+    }
+
+    setLanguage(lang) {
+        if (this.editor && lang !== this.currentLang) {
+            this.currentLang = lang;
+            this.editor.session.setMode("ace/mode/" + lang);
+            actions.setLanguage(lang);
+        }
+    }
+
     render() {
-        var {code} = this.props;
+        var {code, language, running} = this.props;
+        
+        if (language !== undefined && this.currentLang !== language) {
+            this.setLanguage(language);
+        }
 
         if (this.editor && code !== this.editor.getValue()) {
             this.setValueSilent(code);
@@ -56,14 +72,18 @@ export default class Navigation extends React.Component {
         return (
             <div id="editor-wrapper">
                 <div id="editor-top">
-                    <Dropdown placeholder="Language" options={modes} value={'javascript'} onChange={(mode)=>{
-                        this.editor.session.setMode("ace/mode/"+mode);
+                    <Dropdown placeholder="Language" options={modes} value={language} onChange={(mode)=>{
+
+                        this.setLanguage(mode);
                     }
                     }/>
                     <Dropdown placeholder="Theme" options={themes} value={'tomorrow_night_eighties'} onChange={(theme)=>{
                         this.editor.setTheme("ace/theme/"+theme);
                     }
                     }/>
+                    <button className="btn btn-default dropdown-toggle" onClick={this.onRun.bind(this)}
+                            disabled={running}>Run
+                    </button>
                 </div>
                 <div id="editor"></div>
 

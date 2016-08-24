@@ -2,6 +2,7 @@ const EventEmitter = require('events');
 const Session = require('./Session');
 const logger = require('winston');
 const mongoose = require('mongoose');
+const runner = require('../../runner/index');
 const Schema = mongoose.Schema;
 // Use native promises
 mongoose.Promise = global.Promise;
@@ -9,6 +10,7 @@ var documentSchema = new Schema({
         id: {type: String, unique: true},
         author: String,
         code: String,
+        output: String,
         messages: [{content: String, date: Date, username: String}],
         language: String
     },
@@ -28,7 +30,8 @@ class Document extends EventEmitter {
         this.sessions = this.options.sessions || [];
         this.id = this.options.id;
 
-        Document.findById(this.id);
+        /////////////////////////////////////////
+        this.model.language = this.model.language || 'javascript';
 
     }
 
@@ -94,6 +97,8 @@ class Document extends EventEmitter {
 
         options.messages = this.model.messages;
         options.code = this.model.code;
+        options.output = this.model.output;
+        options.language = this.model.language;
 
         var newSession = new Session(options);
         this.sessions.push(newSession);
@@ -120,9 +125,44 @@ class Document extends EventEmitter {
                 this.model.code = e.data.content;
                 this.sendToAllExceptCurrentSession(session, e);
                 break;
+            case 'language':
+                this.model.language = e.data.language;
+                this.sendToAllExceptCurrentSession(session, e);
+                break;
+            case 'run':
+                this.run();
+                break;
         }
 
         this.deferSave();
+    }
+
+    run(){
+        console.log('run');
+        runner.exec({
+            timeout: 1000,
+            language: this.model.language,
+            code: this.model.code
+        })
+            .then(function (data) {
+                this.model.output = data.result;
+
+                this.sendToAll({
+                    type: 'output',
+                    data: {
+                        output: this.model.output
+                    }
+                });
+            }.bind(this))
+            .catch(function (e) {
+                console.log(e, e.toString());
+                this.sendToAll({
+                    type: 'output',
+                    data: {
+                        output: e.toString()
+                    }
+                });
+            }.bind(this));
     }
 
     deferSave(){

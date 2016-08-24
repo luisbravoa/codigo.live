@@ -5,7 +5,10 @@ var ininitalState = {
     error: false,
     chat: {
         messages: []
-    }
+    },
+    output: '',
+    language: 'javascript',
+    running: false
 };
 export default
 function Reducer(state = ininitalState, action) {
@@ -17,6 +20,9 @@ function Reducer(state = ininitalState, action) {
                 username: action.data,
                 error: state.error,
                 code: state.code,
+                output: state.output,
+                language: state.language,
+                running: state.running,
                 chat: {
                     messages: state.chat.messages.slice(0)
                 }
@@ -28,6 +34,9 @@ function Reducer(state = ininitalState, action) {
                 username: state.username,
                 error: state.error,
                 code: state.code,
+                output: state.output,
+                running: state.running,
+                language: state.language,
                 chat: {
                     messages: state.chat.messages.slice(0)
                 }
@@ -38,10 +47,13 @@ function Reducer(state = ininitalState, action) {
                 documentId: state.documentId,
                 username: state.username,
                 error: false,
+                code: action.data.code,
+                output: action.data.output,
+                running: state.running,
+                language: action.data.language,
                 chat: {
                     messages: action.data.messages
-                },
-                code: action.data.code
+                }
             };
         case 'CHAT_MESSAGE':
             var messages = state.chat.messages.slice(0);
@@ -51,6 +63,9 @@ function Reducer(state = ininitalState, action) {
                 username: state.username,
                 error: false,
                 code: state.code,
+                language: state.language,
+                output: state.output,
+                running: state.running,
                 chat: {
                     messages: messages
                 }
@@ -59,8 +74,37 @@ function Reducer(state = ininitalState, action) {
             return {
                 documentId: state.documentId,
                 username: state.username,
+                language: state.language,
                 error: false,
                 code: action.data.content,
+                output: state.output,
+                running: state.running,
+                chat: {
+                    messages: state.chat.messages.slice(0)
+                }
+            };
+        case 'RUNNING':
+            return {
+                documentId: state.documentId,
+                username: state.username,
+                language: state.language,
+                error: false,
+                code: state.code,
+                output: state.output,
+                running: true,
+                chat: {
+                    messages: state.chat.messages.slice(0)
+                }
+            };
+        case 'OUTPUT':
+            return {
+                documentId: state.documentId,
+                username: state.username,
+                language: state.language,
+                error: false,
+                code: state.code,
+                output: action.data.output,
+                running: false,
                 chat: {
                     messages: state.chat.messages.slice(0)
                 }
@@ -69,7 +113,10 @@ function Reducer(state = ininitalState, action) {
             return {
                 documentId: state.documentId,
                 username: state.username,
+                language: state.language,
+                output: state.output,
                 error: false,
+                running: state.running,
                 code: state.code,
                 chat: {
                     messages: state.chat.messages.slice(0)

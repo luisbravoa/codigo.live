@@ -8,18 +8,18 @@ export default class Navigation extends React.Component {
         this.state = {value: ''};
     }
 
-    handleChange(e){
+    handleChange(e) {
         this.setState({value: e.target.value});
     }
 
-    onSubmit(){
+    onSubmit() {
         actions.sendMessage(this.state.value);
         this.setState({
             value: ''
         });
     }
 
-    handleKeyPress(e){
+    handleKeyPress(e) {
         if (e.key === 'Enter') {
             this.onSubmit();
         }
@@ -31,7 +31,8 @@ export default class Navigation extends React.Component {
             <div>
                 <div className="panel-footer">
                     <div className="input-group">
-                        <input id="btn-input" type="text" className="form-control input-sm" placeholder="Type your message here..."
+                        <input id="btn-input" type="text" className="form-control input-sm"
+                               placeholder="Type your message here..."
                                value={this.state.value}
                                onChange={this.handleChange.bind(this)}
                                onKeyPress={this.handleKeyPress.bind(this)}

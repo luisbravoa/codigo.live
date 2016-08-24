@@ -9,9 +9,11 @@
     font-weight: bold;
     color: black;
 }
+
 .message-content {
     margin: 10px 0;
 }
+
 .message-date {
     font-style: italic;
     color: gray;

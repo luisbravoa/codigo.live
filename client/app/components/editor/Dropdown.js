@@ -22,7 +22,8 @@ export default class Dropdown extends React.Component {
                     <ul className="dropdown-menu">
                         {
                             options.map((option, index)=> {
-                                return <li key={index} className={(option === this.state.value)? 'selected' : ''}><a href="#" onClick={(e)=>{
+                                return <li key={index} className={(option === this.state.value)? 'selected' : ''}><a
+                                    href="#" onClick={(e)=>{
                                     e.preventDefault();
                                     this.setState({ value: option});
                                     this.props.onChange(option);

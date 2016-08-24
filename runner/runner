@@ -1,9 +1,7 @@
 #!/bin/bash
+
 file="$1"
 local="$2"
-
-
-
 
 if [ "$local" = "--debug" ]
 then

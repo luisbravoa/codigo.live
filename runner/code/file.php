@@ -1,4 +1,1 @@
-<?php 
-
-echo "holas";
-
+console.log('holas')

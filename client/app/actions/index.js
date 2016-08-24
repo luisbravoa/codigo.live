@@ -41,6 +41,19 @@ class Actions {
                     data: e.data
                 });
                 break;
+            case 'language':
+                debugger;
+                store.dispatch({
+                    type: 'OUTPUT',
+                    data: e.data
+                });
+                break;
+            case 'output':
+                store.dispatch({
+                    type: 'OUTPUT',
+                    data: e.data
+                });
+                break;
             case 'error':
                 // show error
                 debugger;
@@ -49,6 +62,19 @@ class Actions {
 
     }
 
+    runCode() {
+        store.dispatch({
+            type: 'RUNNING'
+        });
+
+        dataService.send('run', {});
+    }
+
+    setLanguage(lang) {
+        dataService.send('language', {
+            language: lang
+        });
+    }
     sendMessage(content) {
         dataService.send('chat', {
             content: content
