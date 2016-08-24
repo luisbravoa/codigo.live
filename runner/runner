@@ -1,19 +1,31 @@
+#!/bin/bash
 file="$1"
-# run  --read-only -v `pwd`:`pwd` -w `pwd` -i -t  runner node file.js
+local="$2"
 
-runner="docker run runner"
 
-file=$1
 
-ext"${file##*.}"
-echo "$ext"
 
-case "$ext" in
-  "rb")
-    ruby $file
+if [ "$local" = "--debug" ]
+then
+  echo "=========DEBUG=========="
+  command=""
+else
+  command="docker run --read-only -v `pwd`:/code -w /code -i -t  runner "
+fi
+
+extension="${file##*.}"
+
+case "$extension" in
+  "js")
+    lang="node"
+    ;;
+  "php")
+    lang="php"
     ;;
   *)
-    echo "Not supported"
+    echo "Language not supported"
     exit 1
     ;;
 esac
+
+$command $lang $file
