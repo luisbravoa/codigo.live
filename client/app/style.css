@@ -1,6 +1,18 @@
 html, body, #app{
     height: 100%;
 }
+#app{
+    background-color: rgba(0,0,0,.5);
+}
+
+body{
+    background-image: url("/img/home.jpg");
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+}
 nav.navbar{
     background-image: none;
     background-color: white;
@@ -35,12 +47,7 @@ nav.navbar .navbar-header  .icon-bar{
 }
 #home-banner{
     margin:0;
-    background-image: url("/img/home.jpg");
     height: calc(100% - 0px);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: bottom;
-    background-size: cover;
     color: white;
     text-shadow: black;
     text-align: center;
@@ -48,6 +55,7 @@ nav.navbar .navbar-header  .icon-bar{
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
+    background-color: transparent;
 }
 
 #home-banner-content {
@@ -86,15 +94,24 @@ nav.navbar .navbar-header  .icon-bar{
     padding-top: 70px;
 }
 #chat-panel{
+    padding: 0;
+    padding-top: 10px;
+    height: 100%;
+}
+#code-panel{
+    padding: 0;
+    height: 100%;
+}
+#output-panel{
+    padding: 0;
     height: 100%;
     padding-top: 10px;
 }
-#code-panel{
-    padding:0;
-    height: 100%;
+#chat-panel, #output-panel, #code-panel{
+    border: 1px black solid;
 }
 @media(max-width: 768px){
-    #chat-panel{
+    #chat-panel, #output-panel{
         height: 300px;
         padding-top: 10px;
     }

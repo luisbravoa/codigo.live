@@ -29,8 +29,6 @@ class Document extends EventEmitter {
 
         this.sessions = this.options.sessions || [];
         this.id = this.options.id;
-
-        /////////////////////////////////////////
         this.model.language = this.model.language || 'javascript';
 
     }
@@ -116,6 +114,7 @@ class Document extends EventEmitter {
     }
 
     onMessage (e, session){
+        logger.info('event: ', e.type);
         switch (e.type) {
             case 'chat':
                 this.model.messages.push(e.data);

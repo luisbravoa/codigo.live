@@ -43,17 +43,14 @@ function writeFile(code, language){
 }
 
 function exec(file, timeout) {
-
+    timeout = timeout || 1000;
     return new Promise(function (resolve, reject) {
         var process, _timeout;
         shell.cd(__dirname +'/code');
         _timeout = setTimeout(function () {
-            if(process){
-                process.kill();
-                reject(new Error('Script timeout'));
-            }
-        }, timeout || 1000);
-        process = shell.exec('bash ../runner '+file+'', {async: true, silent: false}, function (code, stdout, stderr) {
+            reject(new Error('Script timeout'));
+        }, timeout);
+        shell.exec('bash ../runner '+file+'', {async: true, silent: true, timeout: timeout}, function (code, stdout, stderr) {
             clearTimeout(_timeout);
             resolve({
                 result: (code !== 0)? stderr : stdout,

@@ -1,2 +1,3 @@
-<?php 
-dsadsad
+while (true){
+    console.log('dsadsad');
+}

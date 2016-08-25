@@ -51,6 +51,7 @@ export default class Navigation extends React.Component {
 
     setLanguage(lang) {
         if (this.editor && lang !== this.currentLang) {
+            console.log('setLanguage', lang);
             this.currentLang = lang;
             this.editor.session.setMode("ace/mode/" + lang);
             actions.setLanguage(lang);
@@ -66,7 +67,6 @@ export default class Navigation extends React.Component {
 
         if (this.editor && code !== this.editor.getValue()) {
             this.setValueSilent(code);
-
         }
 
         return (
@@ -129,7 +129,7 @@ var themes = [
 ];
 
 var modes = [
-    // "c_cpp", 
+    // "c_cpp",
     // "clojure",
     // "coffee",
     // "csharp",

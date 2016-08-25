@@ -3,125 +3,64 @@ var ininitalState = {
     documentId: undefined,
     code: '',
     error: false,
-    chat: {
-        messages: []
-    },
     output: '',
     language: 'javascript',
-    running: false
+    running: false,
+    chat: {
+        messages: []
+    }
 };
 export default
 function Reducer(state = ininitalState, action) {
-    // console.log(action.type, state, action);
     switch (action.type) {
         case 'SET_USERNAME':
-            return {
-                documentId: state.documentId,
-                username: action.data,
-                error: state.error,
-                code: state.code,
-                output: state.output,
-                language: state.language,
-                running: state.running,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+            return Object.assign({}, state, {
+                username: action.data
+            });
             break;
         case 'SET_DOCUMENT_ID':
-            return {
-                documentId: action.data,
-                username: state.username,
-                error: state.error,
-                code: state.code,
-                output: state.output,
-                running: state.running,
-                language: state.language,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+            return Object.assign({}, state, {
+                documentId: action.data
+            });
             break;
         case 'INIT':
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                error: false,
+            return Object.assign({}, state, {
+                error:false,
                 code: action.data.code,
                 output: action.data.output,
-                running: state.running,
-                language: action.data.language,
-                chat: {
-                    messages: action.data.messages
-                }
-            };
+                language: action.data.language
+            });
         case 'CHAT_MESSAGE':
             var messages = state.chat.messages.slice(0);
             messages.push(action.data);
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                error: false,
-                code: state.code,
-                language: state.language,
-                output: state.output,
-                running: state.running,
+            return Object.assign({}, state, {
                 chat: {
                     messages: messages
                 }
-            };
+            });
         case 'CODE':
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                language: state.language,
-                error: false,
-                code: action.data.content,
-                output: state.output,
-                running: state.running,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+            return Object.assign({}, state, {
+                code: action.data.content
+            });
+        case 'SET_LANGUAGE':
+            return Object.assign({}, state, {
+                language: action.data.language
+            });
         case 'RUNNING':
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                language: state.language,
-                error: false,
-                code: state.code,
-                output: state.output,
-                running: true,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+            return Object.assign({}, state, {
+                running: true
+            });
         case 'OUTPUT':
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                language: state.language,
-                error: false,
-                code: state.code,
+            return Object.assign({}, state, {
                 output: action.data.output,
-                running: false,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+                running: false
+            });
+        case 'ERROR':
+            return Object.assign({}, state, {
+                error: action.data.error
+            });
         case 'SHOW_LOADER':
-            return {
-                documentId: state.documentId,
-                username: state.username,
-                language: state.language,
-                output: state.output,
-                error: false,
-                running: state.running,
-                code: state.code,
-                chat: {
-                    messages: state.chat.messages.slice(0)
-                }
-            };
+            return Object.assign({}, state, {});
         default:
             return state
     }

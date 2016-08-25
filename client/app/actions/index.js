@@ -42,7 +42,6 @@ class Actions {
                 });
                 break;
             case 'language':
-                debugger;
                 store.dispatch({
                     type: 'OUTPUT',
                     data: e.data
@@ -55,8 +54,10 @@ class Actions {
                 });
                 break;
             case 'error':
-                // show error
-                debugger;
+                store.dispatch({
+                    type: 'ERROR',
+                    data: e.data
+                });
                 break;
         }
 
@@ -71,11 +72,23 @@ class Actions {
     }
 
     setLanguage(lang) {
+        store.dispatch({
+            type: 'SET_LANGUAGE',
+            data: {
+                language: lang
+            }
+        });
         dataService.send('language', {
             language: lang
         });
     }
     sendMessage(content) {
+        store.dispatch({
+            type: 'CODE',
+            data: {
+                content: content
+            }
+        });
         dataService.send('chat', {
             content: content
         });

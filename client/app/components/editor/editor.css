@@ -11,6 +11,7 @@
     border: 1px solid #cecece;
     border-left: none;
     border-right: none;
+    border-top: none;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
