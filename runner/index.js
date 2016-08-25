@@ -53,10 +53,10 @@ function exec(file, timeout) {
                 reject(new Error('Script timeout'));
             }
         }, timeout || 1000);
-        process = shell.exec('bash ../runner '+file+'', {async: true, silent: true}, function (code, stdout, stderr) {
+        process = shell.exec('bash ../runner '+file+'', {async: true, silent: false}, function (code, stdout, stderr) {
             clearTimeout(_timeout);
             resolve({
-                result: stdout,
+                result: (code !== 0)? stderr : stdout,
                 error: (code !== 0)
             });
         });

@@ -8,7 +8,7 @@ then
   echo "=========DEBUG=========="
   command=""
 else
-  command="docker run --read-only -v `pwd`:/code -w /code -i -t  runner "
+  command="docker run --read-only -v `pwd`:/code -w /code -i runner "
 fi
 
 extension="${file##*.}"

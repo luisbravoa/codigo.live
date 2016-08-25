@@ -59,7 +59,7 @@ export default class Navigation extends React.Component {
 
     render() {
         var {code, language, running} = this.props;
-        
+
         if (language !== undefined && this.currentLang !== language) {
             this.setLanguage(language);
         }
@@ -128,7 +128,41 @@ var themes = [
     'xcode'
 ];
 
-var modes = ["c_cpp", "clojure", "coffee", "csharp", "css", "dart", "erlang", "haml", "handlebars", "html", "html_ruby", "java", "javascript", "less", "livescript", "lucene", "markdown", "mysql", "objectivec", "pascal", "perl", "php", "plain_text", "python", "ruby", "sass", "scala", "sql", "sqlserver", "svg", "swift", "typescript", "vbscript"];
+var modes = [
+    // "c_cpp", 
+    // "clojure",
+    // "coffee",
+    // "csharp",
+    // "css",
+    // "dart",
+    // "erlang",
+    // "haml",
+    // "handlebars",
+    // "html",
+    // "html_ruby",
+    // "java",
+    "javascript",
+    // "less",
+    // "livescript",
+    // "lucene",
+    // "markdown",
+    // "mysql",
+    // "objectivec",
+    // "pascal",
+    // "perl",
+    "php",
+    // "plain_text",
+    // "python",
+    // "ruby",
+    // "sass",
+    // "scala",
+    // "sql",
+    // "sqlserver",
+    // "svg",
+    // "swift",
+    // "typescript",
+    // "vbscript"
+];
 // var index = 0;
 // setInterval(function () {
 // console.log(themes[index])
