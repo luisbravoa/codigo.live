@@ -6,11 +6,16 @@ class Runner {
         var code = options.code.trim();
         var language = options.language;
         var timeout = options.timeout;
+	var resultLimit = options.resultLimit || 1000;
 
         return writeFile(code, language)
             .then(function (file) {
                 return exec(file, timeout);
-            });
+            })
+	    .then(function(data){
+		data.result = data.result.substr(0, resultLimit);
+		return data;
+	    })
 }
 }
 
@@ -49,11 +54,12 @@ function exec(file, timeout) {
         shell.cd(__dirname +'/code');
         _timeout = setTimeout(function () {
             reject(new Error('Script timeout'));
-        }, timeout);
-        shell.exec('bash ../runner '+file+'', {async: true, silent: true, timeout: timeout}, function (code, stdout, stderr) {
+        }, timeout + 100);
+        shell.exec('bash ../runner '+file+'', {async: true, silent: false, timeout: timeout}, function (code, stdout, stderr) {
             clearTimeout(_timeout);
-            resolve({
-                result: (code !== 0)? stderr : stdout,
+            
+		resolve({
+                result: (code !== 0)? stderr||stdout : stdout,
                 error: (code !== 0)
             });
         });

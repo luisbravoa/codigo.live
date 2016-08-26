@@ -1,3 +1,2 @@
-while (true){
-    console.log('dsadsad');
-}
+while (true)
+console.log('holas1');
