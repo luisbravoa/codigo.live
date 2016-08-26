@@ -45,7 +45,7 @@ function writeFile(code, language){
 function exec(file, timeout) {
     timeout = timeout || 1000;
     return new Promise(function (resolve, reject) {
-        var process, _timeout;
+        var _timeout;
         shell.cd(__dirname +'/code');
         _timeout = setTimeout(function () {
             reject(new Error('Script timeout'));
