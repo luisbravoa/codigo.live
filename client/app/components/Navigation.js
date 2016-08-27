@@ -22,6 +22,9 @@ export default class Navigation extends React.Component {
             </div>);
         }
 
+
+
+
         return (
             <nav className="navbar navbar-fixed-top">
                 <div className="container-fluid">

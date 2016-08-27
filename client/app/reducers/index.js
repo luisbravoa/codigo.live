@@ -6,13 +6,20 @@ var ininitalState = {
     output: '',
     language: 'javascript',
     running: false,
+    connected: false,
     chat: {
         messages: []
     }
 };
 export default
 function Reducer(state = ininitalState, action) {
+    // console.log(action.type, action);
     switch (action.type) {
+        case 'CONNECTED':
+            return Object.assign({}, state, {
+                connected: action.data
+            });
+            break;
         case 'SET_USERNAME':
             return Object.assign({}, state, {
                 username: action.data
@@ -28,7 +35,10 @@ function Reducer(state = ininitalState, action) {
                 error:false,
                 code: action.data.code,
                 output: action.data.output,
-                language: action.data.language
+                language: action.data.language,
+                chat: {
+                    messages: action.data.messages
+                }
             });
         case 'CHAT_MESSAGE':
             var messages = state.chat.messages.slice(0);
@@ -57,7 +67,7 @@ function Reducer(state = ininitalState, action) {
             });
         case 'ERROR':
             return Object.assign({}, state, {
-                error: action.data.error
+                error: action.data
             });
         case 'SHOW_LOADER':
             return Object.assign({}, state, {});

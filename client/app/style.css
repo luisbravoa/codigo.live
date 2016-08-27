@@ -4,6 +4,9 @@ html, body, #app{
 #app{
     background-color: rgba(0,0,0,.5);
 }
+#layout {
+
+}
 
 body{
     background-image: url("/img/home.jpg");
@@ -94,9 +97,9 @@ nav.navbar .navbar-header  .icon-bar{
     padding-top: 70px;
 }
 #chat-panel{
-    padding: 0;
     padding-top: 10px;
     height: 100%;
+    background-color: white;
 }
 #code-panel{
     padding: 0;
@@ -127,29 +130,22 @@ nav.navbar .navbar-header  .icon-bar{
     border-radius: 0 !important;
 }
 
-.schedule table{
-    font-size: 12px;
+#connection-message {
+    padding: 10px;
+    /*position: fixed;*/
+    /*top:10px;*/
 }
 
-.schedule .elipsis{
-    max-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+#error-screen{
+    text-align: center;
+    color: white;
 }
-#courseList {
-
+#error-screen h1{
+    font-size: 130px;
 }
-#courseList ul {
-    list-style: none;
-    padding: 0;
+#error-screen h2{
+    font-size: 30px;
 }
-
-#courseList li {
-    padding: 7px 0;
-    font-size: 14px;
-}
-
 
 #loaderWrapper{
     position: fixed;

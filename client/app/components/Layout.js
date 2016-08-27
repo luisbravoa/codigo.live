@@ -11,7 +11,9 @@ class Layout extends React.Component {
     }
 
     render() {
-        var {chat, code, output, language, running} = this.props;
+        var {chat, code, output, language, running, connected} = this.props;
+
+        var connectedMessage = (!connected)? <p id="connection-message" className="bg-danger">Disconnected</p>: <p id="connection-message" className="bg-success">Disconnected</p>;
 
         return (
             <div id="layout" className="container-full">
@@ -24,8 +26,10 @@ class Layout extends React.Component {
                 </div>
 
                 <div id="chat-panel" className="col-sm-3 col-md-3 sidebar">
+                    {connectedMessage}
                     <Chat messages={chat.messages}></Chat>
                 </div>
+
             </div>
         );
     }

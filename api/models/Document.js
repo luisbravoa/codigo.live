@@ -4,6 +4,7 @@ const logger = require('winston');
 const mongoose = require('mongoose');
 const runner = require('../../runner/index');
 const Schema = mongoose.Schema;
+const config = require('../config');
 // Use native promises
 mongoose.Promise = global.Promise;
 var documentSchema = new Schema({
@@ -141,7 +142,8 @@ class Document extends EventEmitter {
         runner.exec({
             timeout: 1000,
             language: this.model.language,
-            code: this.model.code
+            code: this.model.code,
+            debug: config.debug || false
         })
             .then(function (data) {
                 this.model.output = data.result;

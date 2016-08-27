@@ -12,8 +12,12 @@ class Layout extends React.Component {
 
         return (
             <div id="layout" className="container-full">
-                <div className="jumbotron" id="home-banner">
-                    <div id="home-banner-content">
+                <div id="error-screen" className="">
+                    <h2>Oops!</h2>
+
+                    <h1 className="404error"> 404 </h1>
+                    <h2>Document Not Found</h2>
+                    <div className="error-details">
                         
                     </div>
                 </div>

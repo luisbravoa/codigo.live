@@ -20,6 +20,15 @@ case "$extension" in
   "php")
     lang="php"
     ;;
+  "pl")
+    lang="perl"
+    ;;
+  "py")
+    lang="python"
+    ;;
+  "rb")
+    lang="ruby"
+    ;;
   *)
     echo "Language not supported"
     exit 1

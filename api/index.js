@@ -20,12 +20,12 @@ const port = 3000;
 server.listen(port, function(){
     logger.info('Server started listening at port ' + port);
 });
+
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-
     next();
 };
 
@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
                 });
             })
             .catch(function (error) {
-                socket.emit('message', {type: 'error', data:{ error: error.toString()}});
+                socket.emit('message', {type: 'error', data:{ message: error.toString(), code:404}});
                 socket.disconnect();
             });
     }   else {

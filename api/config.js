@@ -3,3 +3,5 @@ exports.database = {
     port : 27017,
     name: 'codigo'
 };
+
+exports.debug = true;

@@ -23,6 +23,12 @@ class Actions {
     onMessage (e) {
 
         switch (e.type) {
+            case 'connected':
+                store.dispatch({
+                    type: 'CONNECTED',
+                    data: e.data
+                });
+                break;
             case 'chat':
                 store.dispatch({
                     type: 'CHAT_MESSAGE',
@@ -83,12 +89,6 @@ class Actions {
         });
     }
     sendMessage(content) {
-        store.dispatch({
-            type: 'CODE',
-            data: {
-                content: content
-            }
-        });
         dataService.send('chat', {
             content: content
         });

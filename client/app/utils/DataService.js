@@ -18,12 +18,20 @@ class DataService {
 
             this.socket.on('connect', function (data) {
                 console.log('connect');
+                onMessage({
+                    type: 'connected',
+                    data: true
+                });
                 resolve(data);
             });
             this.socket.on('error', function (e) {
                 reject(e);
             });
             this.socket.on('disconnect', () => {
+                onMessage({
+                    type: 'connected',
+                    data: false
+                });
                 console.log('disconnect');
                 delete this.socket;
             });

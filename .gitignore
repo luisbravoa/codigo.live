@@ -3,3 +3,4 @@ npm-debug.log*
 .idea
 api/config.js
 client/app.min.js
+runner/code/*
