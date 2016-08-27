@@ -1,7 +1,7 @@
 import React from 'react';
 import actions from '../../actions/index';
 import Dropdown from './Dropdown';
-import './editor.css';
+import './editor.less';
 ace.require("ace/ext/language_tools");
 export default class Navigation extends React.Component {
     constructor(props) {

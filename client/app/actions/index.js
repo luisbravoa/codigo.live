@@ -23,6 +23,12 @@ class Actions {
     onMessage (e) {
 
         switch (e.type) {
+            case 'participants':
+                store.dispatch({
+                    type: 'PARTICIPANTS',
+                    data: e.data
+                });
+                break;
             case 'connected':
                 store.dispatch({
                     type: 'CONNECTED',
@@ -106,6 +112,13 @@ class Actions {
     sendCode(content) {
         dataService.send('code', {
             content: content
+        });
+    }
+
+    sendStatus(state){
+        console.log('send ?', (state === 'focus')? 'online': 'away');
+        dataService.send('status', {
+            content: (state === 'focus')? 'online': 'away'
         });
     }
     setUsername(username) {

@@ -9,12 +9,18 @@ var ininitalState = {
     connected: false,
     chat: {
         messages: []
-    }
+    },
+    online: [{user: 'luis', status:'online'}]
 };
 export default
 function Reducer(state = ininitalState, action) {
     // console.log(action.type, action);
     switch (action.type) {
+        case 'PARTICIPANTS':
+            return Object.assign({}, state, {
+                online: action.data
+            });
+            break;
         case 'CONNECTED':
             return Object.assign({}, state, {
                 connected: action.data

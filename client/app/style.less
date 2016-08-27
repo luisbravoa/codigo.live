@@ -50,7 +50,7 @@ nav.navbar .navbar-header  .icon-bar{
 }
 #home-banner{
     margin:0;
-    height: calc(100% - 0px);
+    height: calc(~"100% - 0px");
     color: white;
     text-shadow: black;
     text-align: center;
@@ -108,7 +108,6 @@ nav.navbar .navbar-header  .icon-bar{
 #output-panel{
     padding: 0;
     height: 100%;
-    padding-top: 10px;
 }
 #chat-panel, #output-panel, #code-panel{
     border: 1px black solid;
@@ -117,10 +116,11 @@ nav.navbar .navbar-header  .icon-bar{
     #chat-panel, #output-panel{
         height: 300px;
         padding-top: 10px;
+        padding:0;
     }
     #code-panel{
         padding:0;
-        height: 600px;
+        height: 400px;
     }
 }
 
@@ -160,7 +160,7 @@ nav.navbar .navbar-header  .icon-bar{
 
 #loader{
     position: fixed;
-    top: calc(50% - 45px);
+    top: calc(~"50% - 45px");
     left:50%;
 }
 #loader-message{

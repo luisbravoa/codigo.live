@@ -2,6 +2,7 @@ import React from 'react';
 import Chat from './chat/Chat';
 import Editor from './editor/Editor';
 import Console from './console/Console';
+import Online from './online/Online';
 export default
 class Layout extends React.Component {
     constructor(props) {
@@ -11,9 +12,9 @@ class Layout extends React.Component {
     }
 
     render() {
-        var {chat, code, output, language, running, connected} = this.props;
+        var {chat, code, output, language, running, connected, online} = this.props;
 
-        var connectedMessage = (!connected)? <p id="connection-message" className="bg-danger">Disconnected</p>: <p id="connection-message" className="bg-success">Disconnected</p>;
+        var connectedMessage = (!connected)? <p id="connection-message" className="bg-danger">Disconnected</p>: <p id="connection-message" className="bg-success">Connected</p>;
 
         return (
             <div id="layout" className="container-full">
@@ -27,6 +28,7 @@ class Layout extends React.Component {
 
                 <div id="chat-panel" className="col-sm-3 col-md-3 sidebar">
                     {connectedMessage}
+                    <Online list={online}/>
                     <Chat messages={chat.messages}></Chat>
                 </div>
 

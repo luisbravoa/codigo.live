@@ -2,7 +2,7 @@ import React from 'react';
 import MessageList from './MessageList';
 import InputField from './InputField';
 import actions from '../../actions/index';
-import './chat.css';
+import './chat.less';
 export default class Navigation extends React.Component {
     constructor(props) {
         super(props);

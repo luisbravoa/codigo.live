@@ -34,7 +34,12 @@ app.use(allowCrossDomain);
 app.put('/documents', function (req, res) {
     Document.create()
         .then(function (data) {
-            res.send(data);
+
+            // avoid race condition
+            setTimeout(()=>{
+                res.send(data);
+            }, 100);
+
         })
         .catch(function (e) {
             req.error(e);

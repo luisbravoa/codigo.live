@@ -1,6 +1,6 @@
 require('expose?$!expose?jQuery!jquery');
 require('./utils/bootstrap');
-import './style.css';
+import './style.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
@@ -27,7 +27,6 @@ if (username !== null) {
         data: username
     });
     actions.setUsername(username);
-    // actions.connect(documentId, username);
 }
 
 
@@ -38,9 +37,6 @@ function onLocationChange() {
     var username = localStorage.getItem('username');
     if (documentId.length > 0 ) {
         actions.setDocumentId(documentId);
-        // if(username !== null){
-        //     actions.connect(documentId, username);
-        // }
     } else {
         actions.setDocumentId();
     }
@@ -49,7 +45,18 @@ function onLocationChange() {
 }
 onLocationChange();
 
+function onFocusBlur(type){
+    actions.sendStatus(type);
+}
+
 window.addEventListener("hashchange", onLocationChange);
+window.addEventListener("focus", function (){
+    onFocusBlur('focus');
+});
+
+window.addEventListener("blur", function (){
+    onFocusBlur('blur');
+});
 
 render();
 

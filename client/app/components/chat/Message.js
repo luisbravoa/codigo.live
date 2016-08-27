@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from './Message';
 import actions from '../../actions/index';
-import './message.css';
+import './message.less';
 export default class Navigation extends React.Component {
     constructor(props) {
         super(props);

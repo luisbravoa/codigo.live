@@ -1,0 +1,33 @@
+#online {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  & h3 {
+    margin-top: 0;
+  }
+  &-list {
+    list-style: none;
+    padding: 0;
+    vertical-align: middle;
+    &-user {
+      &-status {
+        font-style: italic;
+        color: #ccc;
+      }
+      &-name {
+        font-size: 16px;
+      }
+      &-icon, &-name, &-status {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+      }
+      &.status-online &-icon {
+        color: #14a746;
+      }
+      &.status-away &-icon {
+        color: #cbc231;
+      }
+    }
+  }
+}

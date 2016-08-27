@@ -1,6 +1,6 @@
 import React from 'react';
 import actions from '../../actions/index';
-import './console.css';
+import './console.less';
 ace.require("ace/ext/language_tools");
 export default class Navigation extends React.Component {
     constructor(props) {

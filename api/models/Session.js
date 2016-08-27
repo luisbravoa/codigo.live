@@ -8,6 +8,8 @@ class Session extends EventEmitter {
         this.options = options;
         this.socket = this.options.socket;
         this.id = this.socket.handshake.query.id;
+        this.userid = this.socket.id;
+        this.status = 'online';
         this.username = this.socket.handshake.query.username || 'Unknown';
         this.listenToSocketEvents();
 
@@ -29,6 +31,10 @@ class Session extends EventEmitter {
         this.socket.on('message', (e) =>{
             e.data.username = this.username;
             e.data.date = new Date();
+
+            if(e.type === 'status'){
+                this.status = e.data.content
+            }
 
             this.emit('message', e);
         });

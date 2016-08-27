@@ -85,7 +85,7 @@ class Document extends EventEmitter {
 
                 resolve({
                     id: newId
-                })
+                });
             });
         });
 
@@ -106,12 +106,31 @@ class Document extends EventEmitter {
         newSession.on('close', ()=> {
             this.sessions.splice(this.sessions.indexOf(newSession), 1);
             logger.info('Document ' + this.model.id + ': removed session. ' + this.sessions.length);
+
+            setTimeout(this.sendParticipants.bind(this), 100);
         });
         newSession.on('message', (e)=>{
             this.onMessage(e, newSession);
         });
 
+        this.sendParticipants();
 
+
+    }
+
+    sendParticipants (){
+        var participants = this.sessions.map((session)=>{
+            return {
+                id: session.userid,
+                user: session.username,
+                status: session.status
+            };
+        });
+
+        this.sendToAll({
+            type: 'participants',
+            data: participants
+        });
     }
 
     onMessage (e, session){
@@ -131,6 +150,9 @@ class Document extends EventEmitter {
                 break;
             case 'run':
                 this.run();
+                break;
+            case 'status':
+                this.sendParticipants();
                 break;
         }
 
