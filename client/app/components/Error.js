@@ -18,7 +18,7 @@ class Layout extends React.Component {
                     <h1 className="404error"> 404 </h1>
                     <h2>Document Not Found</h2>
                     <div className="error-details">
-                        
+
                     </div>
                 </div>
             </div>

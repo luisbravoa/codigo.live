@@ -39,10 +39,14 @@ export default class Navigation extends React.Component {
         this.editor = ace.edit("editor");
         this.editor.$blockScrolling = Infinity;
         this.editor.session.setMode("ace/mode/javascript");
-        this.editor.setTheme("ace/theme/tomorrow_night_eighties");
         this.editor.setFontSize(16);
         this.setValueSilent(this.props.code);
         this.editor.getSession().on('change', this.handleChange.bind(this));
+    }
+
+    setTheme(theme) {
+        this.currentTheme = theme;
+        this.editor.setTheme("ace/theme/" + theme);
     }
 
     onRun() {
@@ -51,7 +55,6 @@ export default class Navigation extends React.Component {
 
     setLanguage(lang) {
         if (this.editor && lang !== this.currentLang) {
-            console.log('setLanguage', lang);
             this.currentLang = lang;
             this.editor.session.setMode("ace/mode/" + lang);
             actions.setLanguage(lang);
@@ -59,7 +62,7 @@ export default class Navigation extends React.Component {
     }
 
     render() {
-        var {code, language, running} = this.props;
+        var {code, language, running, theme} = this.props;
 
         if (language !== undefined && this.currentLang !== language) {
             this.setLanguage(language);
@@ -67,6 +70,11 @@ export default class Navigation extends React.Component {
 
         if (this.editor && code !== this.editor.getValue()) {
             this.setValueSilent(code);
+        }
+
+
+        if (this.editor && theme !== this.currentTheme) {
+            this.setTheme(theme);
         }
 
         return (
@@ -77,8 +85,9 @@ export default class Navigation extends React.Component {
                         this.setLanguage(mode);
                     }
                     }/>
-                    <Dropdown placeholder="Theme" options={themes} value={'tomorrow_night_eighties'} onChange={(theme)=>{
-                        this.editor.setTheme("ace/theme/"+theme);
+                    <Dropdown placeholder="Theme" options={themes} value={theme} onChange={(theme)=>{
+                        // this.editor.setTheme("ace/theme/"+theme);
+                        actions.setTheme(theme);
                     }
                     }/>
                     <button className="btn btn-default dropdown-toggle editor-control" onClick={this.onRun.bind(this)}

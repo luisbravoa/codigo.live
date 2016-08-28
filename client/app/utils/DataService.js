@@ -2,12 +2,12 @@ var $ = require('jquery');
 
 class DataService {
     constructor() {
-        this.base_url = location.protocol+'//'+location.hostname+":3000/";
+        this.base_url = location.protocol + '//' + location.hostname + ":3000/";
     }
 
     connect(id, username, onMessage) {
 
-        if(this.socket !== undefined){
+        if (this.socket !== undefined) {
             // disconnect from previous connection
             this.socket.disconnect();
             delete this.socket;
@@ -40,7 +40,7 @@ class DataService {
             });
         });
     }
-    
+
     send(type, payload) {
         if (this.socket) {
             this.socket.emit('message', {

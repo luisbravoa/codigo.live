@@ -10,7 +10,8 @@ var ininitalState = {
     chat: {
         messages: []
     },
-    online: [{user: 'luis', status:'online'}]
+    online: [],
+    theme: 'tomorrow_night_eighties'
 };
 export default
 function Reducer(state = ininitalState, action) {
@@ -31,6 +32,11 @@ function Reducer(state = ininitalState, action) {
                 username: action.data
             });
             break;
+        case 'SET_THEME':
+            return Object.assign({}, state, {
+                theme: action.data
+            });
+            break;
         case 'SET_DOCUMENT_ID':
             return Object.assign({}, state, {
                 documentId: action.data
@@ -38,7 +44,7 @@ function Reducer(state = ininitalState, action) {
             break;
         case 'INIT':
             return Object.assign({}, state, {
-                error:false,
+                error: false,
                 code: action.data.code,
                 output: action.data.output,
                 language: action.data.language,

@@ -35,7 +35,7 @@ function onLocationChange() {
     documentId = hash.replace('#', '');
     // fetch username
     var username = localStorage.getItem('username');
-    if (documentId.length > 0 ) {
+    if (documentId.length > 0) {
         actions.setDocumentId(documentId);
     } else {
         actions.setDocumentId();
@@ -45,16 +45,16 @@ function onLocationChange() {
 }
 onLocationChange();
 
-function onFocusBlur(type){
+function onFocusBlur(type) {
     actions.sendStatus(type);
 }
 
 window.addEventListener("hashchange", onLocationChange);
-window.addEventListener("focus", function (){
+window.addEventListener("focus", function () {
     onFocusBlur('focus');
 });
 
-window.addEventListener("blur", function (){
+window.addEventListener("blur", function () {
     onFocusBlur('blur');
 });
 

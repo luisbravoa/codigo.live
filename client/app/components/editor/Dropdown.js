@@ -12,7 +12,6 @@ export default class Dropdown extends React.Component {
     render() {
         var {options, value} = this.props;
 
-
         return (
             <div>
                 <div className="dropdown">
@@ -22,7 +21,7 @@ export default class Dropdown extends React.Component {
                     <ul className="dropdown-menu">
                         {
                             options.map((option, index)=> {
-                                return <li key={index} className={(option === this.state.value)? 'selected' : ''}><a
+                                return <li key={index} className={(option === value)? 'selected' : ''}><a
                                     href="#" onClick={(e)=>{
                                     e.preventDefault();
                                     this.setState({ value: option});

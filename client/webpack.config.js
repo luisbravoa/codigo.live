@@ -1,10 +1,29 @@
+var path = require('path'),
+    webpack = require('webpack'),
+    minify = process.argv.indexOf('--minify') !== -1,
+    production = process.argv.indexOf('--production') !== -1,
+    plugins = [];
+
+if (minify) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
+if (production) {
+    plugins.push(new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify("production")
+        }
+    }));
+}
+
+
 module.exports = {
 
     context: __dirname,
     entry: __dirname + "/app/main.js",
     output: {
         path: __dirname,
-        filename: "app.js"
+        filename: "app.min.js"
     },
     module: {
         loaders: [
@@ -21,5 +40,6 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: plugins
 };

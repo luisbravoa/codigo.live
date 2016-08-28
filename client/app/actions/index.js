@@ -20,7 +20,7 @@ class Actions {
             });
     }
 
-    onMessage (e) {
+    onMessage(e) {
 
         switch (e.type) {
             case 'participants':
@@ -83,6 +83,13 @@ class Actions {
         dataService.send('run', {});
     }
 
+    setTheme(theme) {
+        store.dispatch({
+            type: 'SET_THEME',
+            data: theme
+        });
+    }
+
     setLanguage(lang) {
         store.dispatch({
             type: 'SET_LANGUAGE',
@@ -94,12 +101,13 @@ class Actions {
             language: lang
         });
     }
+
     sendMessage(content) {
         dataService.send('chat', {
             content: content
         });
     }
-    
+
     setCode(content) {
         store.dispatch({
             type: 'CODE',
@@ -115,12 +123,12 @@ class Actions {
         });
     }
 
-    sendStatus(state){
-        console.log('send ?', (state === 'focus')? 'online': 'away');
+    sendStatus(state) {
         dataService.send('status', {
-            content: (state === 'focus')? 'online': 'away'
+            content: (state === 'focus') ? 'online' : 'away'
         });
     }
+
     setUsername(username) {
         localStorage.setItem('username', username);
         this.username = username;
@@ -131,9 +139,9 @@ class Actions {
         this.checkConnect();
     }
 
-    checkConnect () {
-        if(this.documentId !== undefined && this.documentId !== '' && this.username !== null){
-            this.connect(this.documentId , this.username);
+    checkConnect() {
+        if (this.documentId !== undefined && this.documentId !== '' && this.username !== null) {
+            this.connect(this.documentId, this.username);
         }
     }
 
@@ -146,7 +154,7 @@ class Actions {
         this.checkConnect();
     }
 
-    newDocument (){
+    newDocument() {
         store.dispatch({
             type: 'SHOW_LOADER'
         });

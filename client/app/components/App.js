@@ -20,13 +20,12 @@ class App extends React.Component {
         var content;
 
 
-        if(error){
+        if (error) {
             content = <div id="app">
                 <Navigation {...this.props}/>
                 <ErrorScreen/>
             </div>;
-        }else
-        if (documentId !== undefined && documentId !== '' && documentId.length > 0) {
+        } else if (documentId !== undefined && documentId !== '' && documentId.length > 0) {
             var dialog = (!username) ? <Dialog {...this.props}/> : '';
             content = (
                 <div id="app">
