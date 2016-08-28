@@ -4,7 +4,7 @@ module.exports = {
     entry: __dirname + "/app/main.js",
     output: {
         path: __dirname,
-        filename: "app.min.js"
+        filename: "app.js"
     },
     module: {
         loaders: [

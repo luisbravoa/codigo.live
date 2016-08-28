@@ -2,5 +2,6 @@ node_modules
 npm-debug.log*
 .idea
 api/config.js
+client/app.js
 client/app.min.js
 runner/code/*

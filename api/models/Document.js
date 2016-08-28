@@ -165,7 +165,8 @@ class Document extends EventEmitter {
             timeout: 1000,
             language: this.model.language,
             code: this.model.code,
-            debug: config.debug || false
+            debug: config.debug || false,
+            resultLimit: 10000
         })
             .then(function (data) {
                 this.model.output = data.result;
