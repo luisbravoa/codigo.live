@@ -81,7 +81,7 @@ export default class Navigation extends React.Component {
                         this.editor.setTheme("ace/theme/"+theme);
                     }
                     }/>
-                    <button className="btn btn-default dropdown-toggle" onClick={this.onRun.bind(this)}
+                    <button className="btn btn-default dropdown-toggle editor-control" onClick={this.onRun.bind(this)}
                             disabled={running}>Run
                     </button>
                 </div>

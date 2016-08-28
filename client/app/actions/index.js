@@ -55,7 +55,7 @@ class Actions {
                 break;
             case 'language':
                 store.dispatch({
-                    type: 'OUTPUT',
+                    type: 'SET_LANGUAGE',
                     data: e.data
                 });
                 break;

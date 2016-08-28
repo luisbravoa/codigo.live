@@ -16,7 +16,7 @@ export default class Dropdown extends React.Component {
         return (
             <div>
                 <div className="dropdown">
-                    <button id="editor-modes" className="btn btn-default dropdown-toggle" type="button"
+                    <button className="editor-control btn btn-default dropdown-toggle" type="button"
                             data-toggle="dropdown">{this.props.placeholder + ' '}
                         <span className="caret"></span></button>
                     <ul className="dropdown-menu">

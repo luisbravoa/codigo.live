@@ -2,6 +2,8 @@
 
 file="$1"
 local="$2"
+filename="${file%%.*}"
+extension="${file##*.}"
 
 if [ "$local" = "--debug" ]
 then
@@ -10,8 +12,6 @@ then
 else
   command="docker run --read-only -v `pwd`:/code -w /code -i runner timeout 0.300s "
 fi
-
-extension="${file##*.}"
 
 case "$extension" in
   "js")
@@ -29,10 +29,16 @@ case "$extension" in
   "rb")
     lang="ruby"
     ;;
+  "java")
+    echo "java"
+    $command javac "$file" && java "$filename"
+    exit;
+    ;;
   *)
     echo "Language not supported"
     exit 1
     ;;
 esac
+
 
 $command $lang $file
