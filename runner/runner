@@ -10,7 +10,7 @@ then
   echo "=========DEBUG=========="
   command=""
 else
-  command="docker run --read-only -v `pwd`:/code -w /code -i runner timeout 0.300s "
+  command="docker run --read-only -v `pwd`:/code -w /code -i runner timeout 1 "
 fi
 
 case "$extension" in
