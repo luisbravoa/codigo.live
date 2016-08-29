@@ -19,11 +19,11 @@ class Layout extends React.Component {
 
         return (
             <div id="layout" className="container-full">
-                <div id="code-panel" className="col-sm-4 col-md-4">
+                <div id="code-panel" className="col-sm-5 col-md-4">
                     <Editor code={code} language={language} running={running} theme={theme}/>
                 </div>
 
-                <div id="output-panel" className="col-sm-5 col-md-5">
+                <div id="output-panel" className="col-sm-4 col-md-5">
                     <Console content={output} theme={theme}/>
                 </div>
 

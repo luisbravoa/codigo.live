@@ -12,7 +12,12 @@ var documentSchema = new Schema({
         author: String,
         code: String,
         output: String,
-        messages: [{content: String, date: Date, username: String}],
+        messages: [{
+            content: String,
+            date: Date,
+            username: String,
+            type: {type: String}
+        }],
         language: String
     },
     {
@@ -35,13 +40,12 @@ class Document extends EventEmitter {
     }
 
 
-
-    save(){
+    save() {
         return new Promise(function (resolve, reject) {
             this.model.save(function (err) {
-                if(err){
+                if (err) {
                     reject(err);
-                }else {
+                } else {
                     resolve();
                 }
             }.bind(this));
@@ -56,9 +60,9 @@ class Document extends EventEmitter {
                 .exec(function (err, doc) {
                     if (err) {
                         reject(err);
-                    } else if (doc === null){
+                    } else if (doc === null) {
                         reject(new Error('Document not found'));
-                    }else {
+                    } else {
                         resolve(new Document({
                             model: doc
                         }));
@@ -109,7 +113,7 @@ class Document extends EventEmitter {
 
             setTimeout(this.sendParticipants.bind(this), 100);
         });
-        newSession.on('message', (e)=>{
+        newSession.on('message', (e)=> {
             this.onMessage(e, newSession);
         });
 
@@ -118,8 +122,8 @@ class Document extends EventEmitter {
 
     }
 
-    sendParticipants (){
-        var participants = this.sessions.map((session)=>{
+    sendParticipants() {
+        var participants = this.sessions.map((session)=> {
             return {
                 id: session.userid,
                 user: session.username,
@@ -133,10 +137,11 @@ class Document extends EventEmitter {
         });
     }
 
-    onMessage (e, session){
+    onMessage(e, session) {
         logger.info('event: ', e.type);
         switch (e.type) {
-            case 'chat':
+            case 'message':
+                e.data.type = 'message';
                 this.model.messages.push(e.data);
                 this.sendToAll(e);
                 break;
@@ -147,6 +152,20 @@ class Document extends EventEmitter {
             case 'language':
                 this.model.language = e.data.language;
                 this.sendToAllExceptCurrentSession(session, e);
+
+                var message = {
+                    type: 'language',
+                    content: e.data.language,
+                    username: session.username,
+                    date: e.data.date
+                };
+                this.model.messages.push(message);
+
+                // send notification about the language change and who changed it
+                this.sendToAll({
+                    type: 'message',
+                    data: message
+                });
                 break;
             case 'run':
                 this.run();
@@ -159,7 +178,7 @@ class Document extends EventEmitter {
         this.deferSave();
     }
 
-    run(){
+    run() {
         console.log('run');
         runner.exec({
             timeout: 1000,
@@ -189,9 +208,9 @@ class Document extends EventEmitter {
             }.bind(this));
     }
 
-    deferSave(){
+    deferSave() {
 
-        if(this.saveTimeout){
+        if (this.saveTimeout) {
             clearTimeout(this.saveTimeout);
             delete this.saveTimeout;
         }

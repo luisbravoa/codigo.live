@@ -25,6 +25,13 @@ export default class Navigation extends React.Component {
         this.editor.setFontSize(16);
         this.editor.setReadOnly(true);
         this.editor.renderer.setShowGutter(false);
+
+        this.editor.setOptions({
+            readOnly: true,
+            highlightActiveLine: false,
+            highlightGutterLine: false
+        });
+        this.editor.renderer.$cursorLayer.element.style.opacity=0
     }
 
 

@@ -38,8 +38,7 @@ export default class Navigation extends React.Component {
 
         this.editor = ace.edit("editor");
         this.editor.$blockScrolling = Infinity;
-        this.editor.session.setMode("ace/mode/javascript");
-        this.editor.setFontSize(16);
+        this.editor.setFontSize(15);
         this.setValueSilent(this.props.code);
         this.editor.getSession().on('change', this.handleChange.bind(this));
     }
@@ -53,11 +52,14 @@ export default class Navigation extends React.Component {
         actions.runCode();
     }
 
-    setLanguage(lang) {
+    setLanguage(lang, silent) {
         if (this.editor && lang !== this.currentLang) {
             this.currentLang = lang;
+
             this.editor.session.setMode("ace/mode/" + lang);
-            actions.setLanguage(lang);
+            if(!silent){
+                actions.setLanguage(lang);
+            }
         }
     }
 
@@ -65,7 +67,7 @@ export default class Navigation extends React.Component {
         var {code, language, running, theme} = this.props;
 
         if (language !== undefined && this.currentLang !== language) {
-            this.setLanguage(language);
+            this.setLanguage(language, this.currentLang === undefined);
         }
 
         if (this.editor && code !== this.editor.getValue()) {

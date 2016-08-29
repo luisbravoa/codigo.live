@@ -35,7 +35,7 @@ class Actions {
                     data: e.data
                 });
                 break;
-            case 'chat':
+            case 'message':
                 store.dispatch({
                     type: 'CHAT_MESSAGE',
                     data: e.data
@@ -103,7 +103,7 @@ class Actions {
     }
 
     sendMessage(content) {
-        dataService.send('chat', {
+        dataService.send('message', {
             content: content
         });
     }

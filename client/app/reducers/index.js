@@ -4,7 +4,7 @@ var ininitalState = {
     code: '',
     error: false,
     output: '',
-    language: 'javascript',
+    language: undefined,
     running: false,
     connected: false,
     chat: {
