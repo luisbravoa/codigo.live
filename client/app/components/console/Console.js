@@ -22,6 +22,7 @@ export default class Navigation extends React.Component {
         this.editor = ace.edit("console");
         this.editor.$blockScrolling = Infinity;
         this.editor.session.setMode("ace/mode/plain_text");
+        this.editor.setTheme("ace/theme/tomorrow_night_eighties");
         this.editor.setFontSize(16);
         this.editor.setReadOnly(true);
         this.editor.renderer.setShowGutter(false);
