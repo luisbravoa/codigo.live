@@ -1,5 +1,6 @@
 html, body, #app {
   height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 #app {
@@ -22,7 +23,6 @@ body {
 nav.navbar {
   background-image: none;
   background-color: white;
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   text-shadow: none;
   padding: 10px 0;
@@ -75,13 +75,27 @@ nav.navbar .navbar-header .icon-bar {
 
 #modal {
 }
-
+#home-banner h1{
+  font-size: 100px;
+  margin-top: -20px;
+}
+#home-banner h1, #logo{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.nav.navbar-nav.navbar-left,
+.nav.navbar-nav.navbar-right {
+  padding-top: 5px;
+}
 #logo {
-  font-size: 28px;
   font-weight: bold;
   text-shadow: none;
   margin: 0;
   color: #000;
+  font-size: 35px;
+  line-height: inherit;
+  height: auto;
+  padding: 5px;
 }
 
 #logo:hover, #logo:focus {
@@ -105,7 +119,7 @@ nav.navbar .navbar-header .icon-bar {
 
 #layout {
   height: 100%;
-  padding-top: 70px;
+  padding-top: 82px;
 }
 
 #chat-panel {
@@ -176,7 +190,6 @@ nav.navbar .navbar-header .icon-bar {
   z-index: 1000;
 
 }
-
 #loader {
   position: fixed;
   top: calc(~"50% - 45px");
