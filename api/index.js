@@ -35,6 +35,7 @@ app.put('/documents', function (req, res) {
     Document.create()
         .then(function (data) {
 
+            logger.info('created document:', data.id);
             // avoid race condition
             setTimeout(()=>{
                 res.send(data);

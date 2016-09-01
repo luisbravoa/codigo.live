@@ -14,7 +14,7 @@ class DataService {
         }
 
         return new Promise((resolve, reject) => {
-            this.socket = io.connect(this.base_url + '?id=' + id + '&username=' + username, {path: ''});
+            this.socket = io.connect(this.base_url + '?id=' + encodeURIComponent(id) + '&username=' + username, {path: ''});
 
             this.socket.on('connect', function (data) {
                 console.log('connect');

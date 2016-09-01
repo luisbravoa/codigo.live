@@ -55,6 +55,7 @@ class Document extends EventEmitter {
 
     static findById(id) {
 
+        logger.info('find document id: ', id);
         return new Promise(function (resolve, reject) {
             documentModel.findOne({id: id})
                 .exec(function (err, doc) {
@@ -181,7 +182,7 @@ class Document extends EventEmitter {
     run() {
         console.log('run');
         runner.exec({
-            timeout: 1000,
+            timeout: 2000,
             language: this.model.language,
             code: this.model.code,
             debug: config.debug || false,

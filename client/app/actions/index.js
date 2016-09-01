@@ -161,6 +161,7 @@ class Actions {
 
         dataService.newDocument()
             .then((data) => {
+                console.log('new document');
                 window.location.hash = data.id;
             })
             .catch((e)=> {
