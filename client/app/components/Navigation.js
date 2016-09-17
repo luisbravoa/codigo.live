@@ -14,7 +14,7 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        const share = (this.props.documentId === undefined)? '' : <li><a href="#" onClick={(e)=>{
+        const share = (this.props.documentId === undefined || this.props.error.code !== undefined)? '' : <li><a href="#" onClick={(e)=>{
                                 e.preventDefault();
                                 actions.showSharePanel();
                             }}>Share</a></li>;
@@ -31,7 +31,7 @@ export default class Navigation extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a id="logo" className="navbar-brand" href="#">CODIGO.LIVE</a>
+                        <a id="logo" className="navbar-brand" href="/">CODIGO.LIVE</a>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav navbar-left">

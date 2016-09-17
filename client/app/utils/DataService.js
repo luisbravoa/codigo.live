@@ -2,7 +2,8 @@ var $ = require('jquery');
 
 class DataService {
     constructor() {
-        this.base_url = location.protocol + '//' + location.hostname + ":3000/";
+        // this.base_url = location.protocol + '//' + location.hostname + ":3000/";
+        this.base_url = '/';
     }
 
     getBaseUrl(){

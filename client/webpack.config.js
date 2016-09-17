@@ -22,7 +22,7 @@ module.exports = {
     context: __dirname,
     entry: __dirname + "/app/main.js",
     output: {
-        path: __dirname,
+        path: '../api/public/',
         filename: "app.min.js"
     },
     module: {

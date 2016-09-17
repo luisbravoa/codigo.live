@@ -1,0 +1,48 @@
+<% include header %>
+<style>
+    html, body {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        background-image: url("/img/home.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    #error-screen {
+        text-align: center;
+        color: white;
+    }
+
+    #error-screen h1 {
+        font-size: 130px;
+    }
+
+    #error-screen h2 {
+        font-size: 30px;
+    }
+
+    a, a:hover{
+        text-decoration: underline;
+        color: white;
+    }
+
+</style>
+<div id="wrapper">
+    <div id="layout" className="container-full">
+        <div id="error-screen" className="">
+            <h2>Oops!</h2>
+
+            <h1 className="404error"> 404 </h1>
+            <h2>Document Not Found</h2>
+            <h2>Go back and to <a href="/">CODIGO.LIVE</a></h2>
+            <div className="error-details">
+
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer %>

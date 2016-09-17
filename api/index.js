@@ -1,3 +1,4 @@
+var express = require('express');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -21,15 +22,17 @@ server.listen(port, function(){
     logger.info('Server started listening at port ' + port);
 });
 
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
 //CORS middleware
-var allowCrossDomain = function(req, res, next) {
+app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-};
-
-app.use(allowCrossDomain);
+});
 
 app.put('/documents', function (req, res) {
     Document.create()
@@ -48,6 +51,42 @@ app.put('/documents', function (req, res) {
 });
 
 app.get('/qr/:id', documents.qr);
+
+app.get('/new', function (req, res) {
+    Document.create()
+        .then(function (data) {
+
+            logger.info('created document:', data.id);
+            res.redirect('/' + data.id);
+
+        })
+        .catch(function (e) {
+            req.error(e);
+        });
+});
+
+function main(req, res) {
+
+    if(req.params.id){
+        let documentId = req.params.id;
+        Document.findById(documentId)
+            .then(function (document) {
+                res.render('index', {id: documentId});
+            })
+            .catch(function (error) {
+                res.render('error', {code: 404, message: 'Document Not Found'});
+            });
+    } else {
+        res.render('index', {id: ''});
+    }
+
+
+}
+
+var reqExp = /\/([0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\-=_]){10}|(\/)/;
+
+app.get('/', main);
+app.get('/:id', main);
 
 // connect to database
 var url = 'mongodb://'+ config.database.host + '/' + config.database.name;

@@ -31,8 +31,8 @@ if (username !== null) {
 
 
 function onLocationChange() {
-    var hash = location.hash;
-    documentId = hash.replace('#', '');
+    var hash = location.pathname;
+    documentId = hash.replace('/', '');
     // fetch username
     var username = localStorage.getItem('username');
     if (documentId.length > 0) {
@@ -40,8 +40,6 @@ function onLocationChange() {
     } else {
         actions.setDocumentId();
     }
-
-
 }
 onLocationChange();
 
@@ -49,7 +47,15 @@ function onFocusBlur(type) {
     actions.sendStatus(type);
 }
 
+window.addEventListener('popstate', function(e) {
+    // e.state is equal to the data-attribute of the last image we clicked
+    console.log(e);
+    var {path} = location.pathname;
+    console.log(path);
+});
+
 window.addEventListener("hashchange", onLocationChange);
+
 window.addEventListener("focus", function () {
     onFocusBlur('focus');
 });
@@ -59,8 +65,3 @@ window.addEventListener("blur", function () {
 });
 
 render();
-
-
-
-
-

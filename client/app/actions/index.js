@@ -25,7 +25,7 @@ class Actions {
     }
 
     getQR(documentId) {
-        return this.getBaseUrl() + 'qr/' + documentId;
+        return '/qr/' + documentId;
     }
 
     showSharePanel() {
@@ -174,7 +174,7 @@ class Actions {
         dataService.newDocument()
             .then((data) => {
                 console.log('new document');
-                window.location.hash = data.id;
+                window.location.pathname = '/'+data.id;
             })
             .catch((e)=> {
                 store.dispatch({

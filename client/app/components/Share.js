@@ -14,7 +14,7 @@ class Dialog extends React.Component {
 
         const {documentId} = this.props;
 
-        const url = 'http://codigo.live/#i3v8Mc28bC' || location.href;
+        const url = location.href;
 
         const fb =
             <a className="share-button" href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)}
