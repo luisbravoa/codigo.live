@@ -5,6 +5,10 @@ class DataService {
         this.base_url = location.protocol + '//' + location.hostname + ":3000/";
     }
 
+    getBaseUrl(){
+        return this.base_url;
+    }
+
     connect(id, username, onMessage) {
 
         if (this.socket !== undefined) {

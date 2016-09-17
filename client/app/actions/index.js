@@ -20,6 +20,18 @@ class Actions {
             });
     }
 
+    getBaseUrl() {
+        return dataService.getBaseUrl();
+    }
+
+    getQR(documentId) {
+        return this.getBaseUrl() + 'qr/' + documentId;
+    }
+
+    showSharePanel() {
+        $('#share-modal').modal();
+    }
+
     onMessage(e) {
 
         switch (e.type) {

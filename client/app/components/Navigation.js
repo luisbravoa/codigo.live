@@ -14,13 +14,10 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        var error;
-
-        if (this.props.error) {
-            error = (<div className="alert alert-danger" role="alert">
-                <strong>Oh snap!</strong> Change a few things up and try submitting again.
-            </div>);
-        }
+        const share = (this.props.documentId === undefined)? '' : <li><a href="#" onClick={(e)=>{
+                                e.preventDefault();
+                                actions.showSharePanel();
+                            }}>Share</a></li>;
 
 
         return (
@@ -39,6 +36,7 @@ export default class Navigation extends React.Component {
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav navbar-left">
                             <li><a href="#" onClick={this.newDocument.bind(this)}>New Document</a></li>
+                            {share}
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li><a href="http://luisbravoa.com" target="blank" id="about">by <i>luisbravoa</i></a></li>

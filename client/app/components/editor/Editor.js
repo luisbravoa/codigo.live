@@ -68,7 +68,7 @@ export default class Navigation extends React.Component {
         var {code, language, running, theme} = this.props;
 
         if (language !== undefined && this.currentLang !== language) {
-            this.setLanguage(language, this.currentLang === undefined);
+            this.setLanguage(language, true);
         }
 
         if (this.editor && code !== this.editor.getValue()) {

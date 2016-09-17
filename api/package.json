@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "mongoose": "^4.5.9",
+    "qr-image": "^3.1.0",
     "socket.io": "^1.4.8",
     "winston": "^2.2.0"
   }

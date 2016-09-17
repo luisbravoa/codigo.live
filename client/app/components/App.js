@@ -1,5 +1,6 @@
 import React from 'react';
-import Login from './Login';
+import actions from '../actions/index';
+import Share from './Share';
 import Navigation from './Navigation';
 import Layout from './Layout';
 import Dialog from './Dialog';
@@ -19,6 +20,12 @@ class App extends React.Component {
 
         var content;
 
+        if(documentId !== undefined){
+            document.querySelector('#meta-image').content = actions.getQR(documentId);
+        }else {
+            document.querySelector('#meta-image').content = '/img/home.jpg';
+        }
+
 
         if (error) {
             content = <div id="app">
@@ -31,6 +38,7 @@ class App extends React.Component {
                 <div id="app">
                     <Navigation {...this.props}/>
                     <Layout {...this.props}/>
+                    <Share {...this.props}/>
                     {dialog}
                 </div>
 

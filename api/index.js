@@ -47,6 +47,7 @@ app.put('/documents', function (req, res) {
         });
 });
 
+app.get('/qr/:id', documents.qr);
 
 // connect to database
 var url = 'mongodb://'+ config.database.host + '/' + config.database.name;
