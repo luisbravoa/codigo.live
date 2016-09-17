@@ -25,7 +25,7 @@ class App extends React.Component {
             document.querySelector('#meta-image').content = actions.getQR(documentId);
             document.querySelector('#meta-url').content = location.href;
         }else {
-            document.querySelector('#meta-image').content = '/img/home.jpg';
+            document.querySelector('#meta-image').content = '/img/home_small.jpg';
             document.querySelector('#meta-url').content = location.protocol + '//' + location.hostname;
         }
 
