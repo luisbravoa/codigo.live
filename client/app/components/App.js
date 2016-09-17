@@ -20,10 +20,13 @@ class App extends React.Component {
 
         var content;
 
+
         if(documentId !== undefined){
             document.querySelector('#meta-image').content = actions.getQR(documentId);
+            document.querySelector('#meta-url').content = location.href;
         }else {
             document.querySelector('#meta-image').content = '/img/home.jpg';
+            document.querySelector('#meta-url').content = location.protocol + '//' + location.hostname;
         }
 
 
