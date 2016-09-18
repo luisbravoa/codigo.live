@@ -35,11 +35,11 @@ export default class Navigation extends React.Component {
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav navbar-left">
-                            <li><a href="#" onClick={this.newDocument.bind(this)}>New Document</a></li>
+                            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onClick={this.newDocument.bind(this)}>New Document</a></li>
                             {share}
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="http://luisbravoa.com" target="blank" id="about">by <i>luisbravoa</i></a></li>
+                            <li><a href="http://luisbravoa.com" data-toggle="collapse" data-target=".navbar-collapse.in" target="blank" id="about">by <i>luisbravoa</i></a></li>
                         </ul>
                     </div>
                 </div>
