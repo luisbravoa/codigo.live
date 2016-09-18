@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Luis Bravo Anato">
 
-    <% var id = id || ''; %>
-    <meta id="meta-url" property="og:url" content="http://codigo.live/<%= id || '' %>"/>
+    <meta id="meta-url" property="og:url" content="http://codigo.live/<%= (id)? id: '' %>"/>
     <meta id="meta-title" property="og:title" content="Codigo.Live - Online code editor"/>
     <meta id="meta-description" property="og:description"
           content="Online code runner and editor with collaborative features. Perfect for remote coding interviews."/>

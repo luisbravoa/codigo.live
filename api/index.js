@@ -74,7 +74,7 @@ function main(req, res) {
                 res.render('index', {id: documentId});
             })
             .catch(function (error) {
-                res.render('error', {code: 404, message: 'Document Not Found'});
+                res.render('error', {code: 404, message: 'Document Not Found', id:''});
             });
     } else {
         res.render('index', {id: ''});
