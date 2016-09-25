@@ -11,7 +11,11 @@ var ininitalState = {
         messages: []
     },
     online: [],
-    theme: 'tomorrow_night_eighties'
+    theme: 'tomorrow_night_eighties',
+    view: {
+        Result: false,
+        Info: true
+    }
 };
 export default
 function Reducer(state = ininitalState, action) {
@@ -35,6 +39,13 @@ function Reducer(state = ininitalState, action) {
         case 'SET_THEME':
             return Object.assign({}, state, {
                 theme: action.data
+            });
+            break;
+        case 'SET_VIEW':
+            var object = {};
+            object[action.data.option] = action.data.value;
+            return Object.assign({}, state, {
+                view: Object.assign({}, state.view, object)
             });
             break;
         case 'SET_DOCUMENT_ID':

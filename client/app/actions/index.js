@@ -9,7 +9,7 @@ class Actions {
         store.dispatch({
             type: 'SHOW_LOADER'
         });
-        dataService.connect(id, username, this.onMessage)
+        dataService.connect(id, username, this.onMessage.bind(this))
             .then((data) => {
                 // console.log(data);
             })
@@ -30,6 +30,16 @@ class Actions {
 
     showSharePanel() {
         $('#share-modal').modal();
+    }
+
+    setView(option, value){
+        store.dispatch({
+            type: 'SET_VIEW',
+            data: {
+                option,
+                value
+            }
+        });
     }
 
     onMessage(e) {
@@ -72,6 +82,9 @@ class Actions {
                 });
                 break;
             case 'output':
+
+                this.setView('Result', true);
+
                 store.dispatch({
                     type: 'OUTPUT',
                     data: e.data

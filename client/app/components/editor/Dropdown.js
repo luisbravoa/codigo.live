@@ -10,7 +10,14 @@ export default class Dropdown extends React.Component {
     }
 
     render() {
-        var {options, value} = this.props;
+        var {options, value, multiple} = this.props;
+
+        if(value !== undefined){
+            this.state = {
+                value: value
+            };
+        }
+
 
         return (
             <div>
@@ -21,13 +28,27 @@ export default class Dropdown extends React.Component {
                     <ul className="dropdown-menu">
                         {
                             options.map((option, index)=> {
-                                return <li key={index} className={(option === value)? 'selected' : ''}><a
+
+                                var selected = (value !== undefined && (option === value || (typeof value === 'object' && value[option] === true)));
+
+                                var tick = (selected === false)? '':
+                                    <i className="fa fa-check" aria-hidden="true"></i>;
+
+                                return <li key={index} className={(selected)? 'selected' : ''}><a
                                     href="#" onClick={(e)=>{
                                     e.preventDefault();
-                                    this.setState({ value: option});
-                                    this.props.onChange(option);
+                                    if(multiple){
+                                        var value = this.state.value;
+                                        value[option] = !value[option];
+                                        this.setState({ value: value});
+                                        this.props.onChange(option, this.state.value[option]);
+                                    }else {
+                                        this.setState({ value: option});
+                                        this.props.onChange(option);
                                     }
-                                    }>{option}</a></li>
+
+                                    }
+                                    }>{tick} {option}</a></li>
                             })
                         }
                     </ul>

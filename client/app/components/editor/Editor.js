@@ -65,7 +65,7 @@ export default class Navigation extends React.Component {
     }
 
     render() {
-        var {code, language, running, theme} = this.props;
+        var {code, language, running, theme, view} = this.props;
 
         if (language !== undefined && this.currentLang !== language) {
             this.setLanguage(language, true);
@@ -89,10 +89,16 @@ export default class Navigation extends React.Component {
                     }
                     }/>
                     <Dropdown placeholder="Theme" options={themes} value={theme} onChange={(theme)=>{
-                        // this.editor.setTheme("ace/theme/"+theme);
                         actions.setTheme(theme);
                     }
                     }/>
+
+                    <Dropdown placeholder="View" options={Object.keys(view)} value={view} multiple={true} onChange={(option, value)=>{
+                        actions.setView(option, value);
+                    }
+                    }/>
+
+
                     <button className="btn btn-default dropdown-toggle editor-control" onClick={this.onRun.bind(this)}
                             disabled={running}>Run
                     </button>
@@ -104,6 +110,24 @@ export default class Navigation extends React.Component {
     }
 }
 
+/*
+ <div>
+ View:
+ <div className="btn-group" data-toggle="buttons">
+ <label className="btn btn-primary">
+ <input type="checkbox" autocomplete="off"/> Result
+ </label>
+ <label className="btn btn-primary">
+ <input type="checkbox" autocomplete="off"/> Chat
+ </label>
+ </div>
+ </div>
+ */
+
+var viewOptions = {
+    Result: true,
+    Info: true
+};
 
 var themes = [
     'ambiance',

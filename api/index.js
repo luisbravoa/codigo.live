@@ -83,8 +83,9 @@ function main(req, res) {
 
 }
 
-var reqExp = /\/([0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\-=_]){10}|(\/)/;
-
+app.get('/favicon.ico', function (req, res) {
+    res.status(404).send();
+});
 app.get('/', main);
 app.get('/:id', main);
 
