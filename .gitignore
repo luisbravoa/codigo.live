@@ -4,5 +4,4 @@ npm-debug.log*
 api/config.js
 client/app.js
 client/app.min.js
-api/public/app.min.js
 runner/code/*
