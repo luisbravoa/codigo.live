@@ -38,8 +38,8 @@ export default class Navigation extends React.Component {
 
         this.editor = ace.edit("editor");
         this.editor.$blockScrolling = Infinity;
-        this.editor.setTheme("ace/theme/tomorrow_night_eighties");
         this.editor.setFontSize(15);
+        this.editor.getSession().setUseWorker(false);
         this.setValueSilent(this.props.code);
         this.editor.getSession().on('change', this.handleChange.bind(this));
     }
@@ -74,7 +74,6 @@ export default class Navigation extends React.Component {
         if (this.editor && code !== this.editor.getValue()) {
             this.setValueSilent(code);
         }
-
 
         if (this.editor && theme !== this.currentTheme) {
             this.setTheme(theme);

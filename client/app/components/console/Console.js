@@ -27,6 +27,9 @@ export default class Navigation extends React.Component {
         this.editor.setReadOnly(true);
         this.editor.renderer.setShowGutter(false);
 
+        this.editor.setValue(this.props.content || '');
+        this.editor.clearSelection();
+
         this.editor.setOptions({
             readOnly: true,
             highlightActiveLine: false,
